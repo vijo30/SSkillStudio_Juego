@@ -1,28 +1,114 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29, 29.5 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 30.75, 42 )
 
 [sub_resource type="SegmentShape2D" id=2]
-b = Vector2( 0, 35 )
+b = Vector2( -1, 47 )
 
 [sub_resource type="SegmentShape2D" id=3]
-b = Vector2( 0, -33 )
+b = Vector2( 0, -47 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "Falling"
+length = 0.45
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeroKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 41, 42, 43, 44 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 0.7
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeroKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.083, 0.166, 0.249, 0.332, 0.415, 0.498, 0.581 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Run"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeroKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Falling"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeTransition" id=16]
+input_count = 2
+input_0/name = "ground"
+input_0/auto_advance = false
+input_1/name = "air"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=17]
+input_count = 2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_1/name = "Run"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( 188, -10.75 )
+nodes/Animation/node = SubResource( 14 )
+nodes/Animation/position = Vector2( 360, 40 )
+"nodes/Animation 2/node" = SubResource( 12 )
+"nodes/Animation 2/position" = Vector2( 320, 220 )
+"nodes/Animation 3/node" = SubResource( 13 )
+"nodes/Animation 3/position" = Vector2( 440, 400 )
+nodes/in_air_state/node = SubResource( 16 )
+nodes/in_air_state/position = Vector2( 900, 100 )
+nodes/movement/node = SubResource( 17 )
+nodes/movement/position = Vector2( 600, 160 )
+nodes/output/position = Vector2( 1160, 40 )
+node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "movement", 0, "Animation", "movement", 1, "Animation 2" ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 move_speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 0.5 )
-shape = SubResource( 1 )
-
-[node name="Icon" type="Sprite" parent="."]
-modulate = Color( 0, 1, 0.290196, 1 )
-texture = ExtResource( 1 )
+position = Vector2( -1.25, 1 )
+shape = SubResource( 10 )
 
 [node name="GroundDetector" type="Area2D" parent="."]
 
@@ -33,6 +119,26 @@ shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
 shape = SubResource( 3 )
+
+[node name="HeroKnight" type="Sprite" parent="."]
+position = Vector2( 1, -7 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 9
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Falling = SubResource( 11 )
+anims/Idle = SubResource( 4 )
+anims/Run = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/in_air_state/current = 0
+parameters/movement/current = 0
 
 [connection signal="body_entered" from="GroundDetector" to="." method="_on_GroundDetector_body_entered"]
 [connection signal="body_exited" from="GroundDetector" to="." method="_on_GroundDetector_body_exited"]

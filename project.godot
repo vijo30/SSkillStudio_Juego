@@ -13,6 +13,10 @@ config_version=4
 config/name="SSkillStudio_Juego"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/codeandweb.texturepacker/plugin.cfg" )
+
 [input]
 
 move_right={

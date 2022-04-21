@@ -77,8 +77,9 @@ func _physics_process(delta):
 	else:
 		$AnimationTree.set("parameters/in_air_state/current",0)
 	
-
-
-
-
-
+func _on_Area2D_body_entered(_body):
+	# when the Player reaches this area, it completes the level (Changes the scene to the next one)
+	# self.position.x = 484
+	# self.position.y = 166
+	get_tree().change_scene("res://SecondLevel.tscn")
+	

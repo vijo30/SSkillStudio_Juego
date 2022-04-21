@@ -88,7 +88,6 @@ input_1/name = "Run"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=18]
-graph_offset = Vector2( 188, -10.75 )
 nodes/Animation/node = SubResource( 14 )
 nodes/Animation/position = Vector2( 360, 40 )
 "nodes/Animation 2/node" = SubResource( 12 )
@@ -100,7 +99,7 @@ nodes/in_air_state/position = Vector2( 900, 100 )
 nodes/movement/node = SubResource( 17 )
 nodes/movement/position = Vector2( 600, 160 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "movement", 0, "Animation", "movement", 1, "Animation 2" ]
+node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "movement", 1, "Animation 2", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3" ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -126,7 +125,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 10
 vframes = 9
-frame = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Falling = SubResource( 11 )

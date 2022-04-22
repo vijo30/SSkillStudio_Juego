@@ -11,10 +11,12 @@ var lastDir = 0
 # Climbing
 var climb = false
 var velocity := Vector2.ZERO
+var canIAttack = false
 
 func _ready():
 	$AnimationTree.active = true
 
+# INNOVATIVE MECHANICS
 func _on_GroundDetector_body_entered(body):
 	if body.is_in_group('tilemap'):
 		grounded = true
@@ -33,6 +35,10 @@ func _on_climb_wall_body_exited(body):
 	if body.is_in_group('tilemap'):
 		climb = false
 
+func _process(delta):
+	if get_node("/root/Main/Panel/ProgressBar").value >= 100:
+		canIAttack = true
+		# sonidito, cambio color en la barra, shader al player
 
 
 func _physics_process(delta):
@@ -76,6 +82,10 @@ func _physics_process(delta):
 		$AnimationTree.set("parameters/in_air_state/current",1)
 	else:
 		$AnimationTree.set("parameters/in_air_state/current",0)
+	# attack implementation
+	if Input.is_action_just_pressed("attack") and canIAttack:
+		canIAttack = false
+		pass # implementar el ataque
 	
 func _on_Area2D_body_entered(_body):
 	# when the Player reaches this area, it completes the level (Changes the scene to the next one)
@@ -83,3 +93,6 @@ func _on_Area2D_body_entered(_body):
 	# self.position.y = 166
 	get_tree().change_scene("res://SecondLevel.tscn")
 	
+func _input(event):
+	if event.is_action_pressed("exit_game"):
+		get_tree().quit()

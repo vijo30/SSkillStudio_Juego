@@ -36,9 +36,10 @@ func _on_climb_wall_body_exited(body):
 		climb = false
 
 func _process(delta):
-	if get_node("/root/Main/Panel/ProgressBar").value >= 100:
-		canIAttack = true
-		# sonidito, cambio color en la barra, shader al player
+	if weakref(Manager.progress_bar).get_ref():
+		if Manager.progress_bar.value >= 100:
+			canIAttack = true
+			# sonidito, cambio color en la barra, shader al player
 
 
 func _physics_process(delta):

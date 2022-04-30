@@ -4,13 +4,13 @@
 [ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 12, 21.5 )
+extents = Vector2( 27.5, 40 )
 
 [sub_resource type="SegmentShape2D" id=2]
-b = Vector2( 0, 24 )
+b = Vector2( 0, 42 )
 
-[sub_resource type="SegmentShape2D" id=3]
-b = Vector2( 0, -27 )
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 7.5, 21.125 )
 
 [sub_resource type="Animation" id=11]
 resource_name = "Falling"
@@ -99,28 +99,31 @@ nodes/in_air_state/position = Vector2( 900, 100 )
 nodes/movement/node = SubResource( 17 )
 nodes/movement/position = Vector2( 600, 160 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "movement", 1, "Animation 2", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3" ]
+node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "movement", 0, "Animation", "movement", 1, "Animation 2" ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 move_speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, -1.5 )
+position = Vector2( -2.5, -1 )
 shape = SubResource( 10 )
 
 [node name="GroundDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
+position = Vector2( 0, 4 )
 shape = SubResource( 2 )
 
 [node name="climb_wall" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
-shape = SubResource( 3 )
+position = Vector2( 0, -21.875 )
+shape = SubResource( 19 )
 
 [node name="HeroKnight" type="Sprite" parent="."]
-position = Vector2( 1, -7 )
+position = Vector2( 1, -13 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 10
 vframes = 9

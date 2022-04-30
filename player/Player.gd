@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var move_speed := 100
+export var move_speed := 50
 export var gravity := 2000
 # Grounded
 var grounded = false

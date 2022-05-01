@@ -12,6 +12,10 @@ var lastDir = 0
 var climb = false
 var velocity := Vector2.ZERO
 var canIAttack = false
+var running = false
+var idle = false
+var attacking = false
+onready var timer = get_node("Timer")
 
 func _ready():
 	$AnimationTree.active = true
@@ -56,6 +60,7 @@ func _physics_process(delta):
 	# set direction of climb_wall	
 	if mve != 0:
 		lastDir = mve
+		running = true
 	$climb_wall.rotation_degrees = lastDir * 90
 	
 	grv = not climb
@@ -76,17 +81,34 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	# animations	
 	if mve==0:
-		$AnimationTree.set("parameters/movement/current",0)
+		if not attacking:
+			$AnimationTree.set("parameters/movement/current",0)
+	
 	if abs(mve)>0 and not climb:
+		running = true
 		$AnimationTree.set("parameters/movement/current",1)
+	
+	if climb:
+		if velocity.y == 0:
+			$AnimationTree.set("parameters/on_wall/current",0)
+		else:
+			$AnimationTree.set("parameters/on_wall/current",1)
+	
 	if not climb and not grounded:
 		$AnimationTree.set("parameters/in_air_state/current",1)
-	else:
+	
+	if climb:
+		$AnimationTree.set("parameters/in_air_state/current",2)
+		
+	if grounded:
 		$AnimationTree.set("parameters/in_air_state/current",0)
+
 	# attack implementation
 	if Input.is_action_just_pressed("attack") and canIAttack:
+		timer.start()
 		canIAttack = false
-		pass # implementar el ataque
+		attacking = true
+		$AnimationTree.set("parameters/movement/current",2)
 	
 func _on_Area2D_body_entered(_body):
 	# when the Player reaches this area, it completes the level (Changes the scene to the next one)
@@ -97,3 +119,8 @@ func _on_Area2D_body_entered(_body):
 func _input(event):
 	if event.is_action_pressed("exit_game"):
 		get_tree().quit()
+
+
+
+func _on_Timer_timeout():
+	attacking = false

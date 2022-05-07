@@ -8,6 +8,7 @@
 [node name="Level_2" type="Node2D"]
 
 [node name="Level_2_tile" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2, 0 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 375, 1098 )
@@ -21,6 +22,8 @@ current = true
 zoom = Vector2( 1.6, 1.8 )
 
 [node name="Panel" parent="." instance=ExtResource( 3 )]
+margin_top = -83.0
+margin_bottom = -3.0
 
 [node name="TimeLeft" parent="Panel" index="1"]
 wait_time = 60.0

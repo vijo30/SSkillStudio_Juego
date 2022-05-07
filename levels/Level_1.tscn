@@ -9,7 +9,7 @@
 position = Vector2( -1, -1 )
 
 [node name="Level_1_tile" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4, 4 )
+position = Vector2( 0, 2 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1948, 140 )
@@ -23,3 +23,7 @@ current = true
 zoom = Vector2( 1.6, 1.8 )
 
 [node name="Panel" parent="." instance=ExtResource( 6 )]
+margin_left = 1.0
+margin_top = -82.0
+margin_right = 2056.0
+margin_bottom = 2.0

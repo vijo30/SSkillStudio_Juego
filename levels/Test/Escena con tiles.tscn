@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://levels/Escena con tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://levels/Test/Escena con tiles.tres" type="TileSet" id=2]
 
 [node name="Escena con tiles" type="Node2D"]
 position = Vector2( 5, -6 )

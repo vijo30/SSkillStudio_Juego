@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level_tiles/Level_1_tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/static/Spikes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/level_switcher/Next_level.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD/Panel.tscn" type="PackedScene" id=6]
 
@@ -12,10 +13,10 @@ position = Vector2( -1, -1 )
 position = Vector2( 0, 2 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1948, 140 )
+position = Vector2( 1836, 217 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 190, 1102 )
+position = Vector2( 195, 1109 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1026, 571 )
@@ -27,3 +28,10 @@ margin_left = 1.0
 margin_top = -82.0
 margin_right = 2056.0
 margin_bottom = 2.0
+
+[node name="Spikes" parent="." instance=ExtResource( 3 )]
+tile_data = PoolIntArray( 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 589862, 1, 0, 589870, 1, 0, 655398, 1, 0, 655406, 1, 0, 655419, 2, 0, 655420, 2, 0, 720898, 1, 0, 720934, 1, 0, 720942, 1, 0, 720954, 1, 0, 720957, 3, 0, 786434, 1, 0, 786470, 1, 0, 786478, 1, 0, 786490, 1, 0, 786493, 3, 0, 851970, 1, 0, 852014, 1, 0, 852026, 1, 0, 852029, 3, 0, 917562, 1, 0, 917565, 3, 0, 983099, 0, 0, 983100, 0, 0, 1048626, 3, 0, 1114162, 3, 0, 1179653, 3, 0, 1179691, 3, 0, 1179698, 3, 0, 1245227, 3, 0, 1245234, 3, 0, 1310763, 3, 0, 1310770, 3, 0, 1376258, 1, 0, 1376299, 3, 0, 1441794, 1, 0, 1507330, 1, 0, 1572866, 1, 0, 1638402, 1, 0, 2097163, 3, 0, 2162699, 3, 0, 2228235, 3, 0, 2293771, 3, 0, 2293774, 0, 0, 2293775, 0, 0, 2293776, 0, 0, 2293777, 0, 0, 2293778, 0, 0, 2293779, 0, 0, 2293780, 0, 0, 2293781, 0, 0, 2293782, 0, 0, 2293783, 0, 0, 2293784, 0, 0, 2293785, 0, 0, 2293786, 0, 0, 2293787, 0, 0, 2293788, 0, 0, 2293789, 0, 0, 2293790, 0, 0, 2293791, 0, 0, 2293792, 0, 0, 2293793, 0, 0, 2293794, 0, 0, 2293795, 0, 0, 2293796, 0, 0, 2293797, 0, 0, 2293798, 0, 0, 2293799, 0, 0, 2293800, 0, 0, 2293801, 0, 0, 2293802, 0, 0, 2293803, 0, 0, 2293804, 0, 0, 2293805, 0, 0, 2293806, 0, 0, 2293807, 0, 0, 2293808, 0, 0, 2293809, 0, 0, 2293810, 0, 0, 2293811, 0, 0, 2293812, 0, 0, 2293813, 0, 0, 2293814, 0, 0, 2293815, 0, 0, 2293816, 0, 0, 2293817, 0, 0, 2293818, 0, 0, 2293819, 0, 0, 2293820, 0, 0, 2293821, 0, 0 )
+
+[connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
+
+[editable path="Panel"]

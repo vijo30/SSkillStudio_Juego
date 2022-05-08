@@ -1,21 +1,20 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 26.5, 40 )
+extents = Vector2( 26.4688, 42.5 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 26.5, 20.5 )
+extents = Vector2( 26.5, 21.5 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 7.5, 17.2813 )
+extents = Vector2( 12.25, 20.4999 )
 
 [sub_resource type="Animation" id=22]
 resource_name = "Attack"
 length = 1.5
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("HeroKnight:frame")
@@ -63,6 +62,37 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 80, 81, 82, 79, 71 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Damage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeroKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 45, 46, 47 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeroKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -132,17 +162,32 @@ animation = "Attack"
 [sub_resource type="AnimationNodeAnimation" id=26]
 animation = "Climb Idle"
 
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "Damage"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "Death"
+
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "Idle"
 
 [sub_resource type="AnimationNodeTransition" id=16]
-input_count = 3
+input_count = 4
 input_0/name = "ground"
 input_0/auto_advance = false
 input_1/name = "air"
 input_1/auto_advance = false
 input_2/name = "wall"
 input_2/auto_advance = false
+input_3/name = "damaged"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=32]
+input_count = 2
+input_0/name = "Damage"
+input_0/auto_advance = false
+input_1/name = "Death"
+input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeTransition" id=17]
 input_count = 3
@@ -161,60 +206,73 @@ input_1/name = "Climb"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=18]
-graph_offset = Vector2( 124, 316.5 )
+graph_offset = Vector2( 125, 97.25 )
 nodes/Animation/node = SubResource( 14 )
 nodes/Animation/position = Vector2( 360, 40 )
 "nodes/Animation 2/node" = SubResource( 12 )
 "nodes/Animation 2/position" = Vector2( 280, 180 )
 "nodes/Animation 3/node" = SubResource( 13 )
-"nodes/Animation 3/position" = Vector2( 800, 540 )
+"nodes/Animation 3/position" = Vector2( 600, 340 )
 "nodes/Animation 4/node" = SubResource( 21 )
 "nodes/Animation 4/position" = Vector2( 480, 620 )
 "nodes/Animation 5/node" = SubResource( 23 )
 "nodes/Animation 5/position" = Vector2( 280, 320 )
 "nodes/Animation 6/node" = SubResource( 26 )
 "nodes/Animation 6/position" = Vector2( 300, 480 )
+"nodes/Animation 7/node" = SubResource( 30 )
+"nodes/Animation 7/position" = Vector2( 920, 480 )
+"nodes/Animation 8/node" = SubResource( 31 )
+"nodes/Animation 8/position" = Vector2( 1360, 440 )
 nodes/in_air_state/node = SubResource( 16 )
 nodes/in_air_state/position = Vector2( 900, 100 )
+nodes/is_damaged/node = SubResource( 32 )
+nodes/is_damaged/position = Vector2( 1120, 300 )
 nodes/movement/node = SubResource( 17 )
 nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
-nodes/on_wall/position = Vector2( 700, 360 )
+nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall" ]
+node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged" ]
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 30.2813, 44.875 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 2 )
 move_speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.5, -1 )
+position = Vector2( 0, -1 )
 shape = SubResource( 10 )
 
 [node name="GroundDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
-position = Vector2( -2.5, 20.5 )
+position = Vector2( 0, 21.5 )
 shape = SubResource( 27 )
 
 [node name="climb_wall" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
-position = Vector2( 0, -30.7188 )
+position = Vector2( -0.024377, -7.49989 )
+rotation = -0.00325031
+scale = Vector2( 1, 1 )
 shape = SubResource( 19 )
 
 [node name="HeroKnight" type="Sprite" parent="."]
-position = Vector2( -3, -14 )
+position = Vector2( 0, -15 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 10
 vframes = 9
-frame = 71
+frame = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 22 )
 "anims/Climb Idle" = SubResource( 24 )
 anims/Climbing = SubResource( 20 )
+anims/Damage = SubResource( 28 )
+anims/Death = SubResource( 29 )
 anims/Falling = SubResource( 11 )
 anims/Idle = SubResource( 4 )
 anims/Run = SubResource( 5 )
@@ -223,14 +281,27 @@ anims/Run = SubResource( 5 )
 tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/in_air_state/current = 0
+parameters/is_damaged/current = 0
 parameters/movement/current = 0
 parameters/on_wall/current = 0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2( 0, -1.125 )
+shape = SubResource( 33 )
+
+[node name="dmgTimer" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="body_entered" from="GroundDetector" to="." method="_on_GroundDetector_body_entered"]
 [connection signal="body_exited" from="GroundDetector" to="." method="_on_GroundDetector_body_exited"]
 [connection signal="body_entered" from="climb_wall" to="." method="_on_climb_wall_body_entered"]
 [connection signal="body_exited" from="climb_wall" to="." method="_on_climb_wall_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
+[connection signal="body_exited" from="CollisionArea" to="." method="_on_CollisionArea_body_exited"]
+[connection signal="timeout" from="dmgTimer" to="." method="_on_dmgTimer_timeout"]

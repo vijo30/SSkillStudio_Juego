@@ -30,16 +30,30 @@ var climb = false
 var canIAttack = false
 var attacking = false
 onready var timer = get_node("Timer")
-onready var next_level = get_tree().get_root()
+onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tree().current_scene.name))+"/Next_level")
+
+
+# Damaged var
+var damaged = false
+onready var dtimer = get_node("dmgTimer")
 
 # Activate animations
 func _ready(): 
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
 
-# Change the levels
-func handleNextLevel():	
-	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
+
+
+func _on_CollisionArea_body_entered(body):
+	if body.is_in_group('spikes'): 
+		dtimer.start()
+		print("ouch")
+		damaged = true
+		damage(10)
+	
+
+func _on_CollisionArea_body_exited(body):
+	pass # Replace with function body.
 
 
 # INNOVATIVE MECHANICS
@@ -54,8 +68,14 @@ func _on_climb_wall_body_entered(body):
 
 func _on_climb_wall_body_exited(body):
 	if body.is_in_group('tilemap'): climb = false
+	
+func handleNextLevel():	
+	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
+	
 
-func _process(delta):
+	
+
+func _process(_delta):
 	if weakref(Manager.progress_bar).get_ref():
 		if Manager.progress_bar.value >= 100:
 			canIAttack = true
@@ -95,29 +115,34 @@ func _physics_process(delta):
 		
 		
 		# animations	
-		if mve==0 and (not attacking): $AnimationTree.set("parameters/movement/current",0)
 		
-		if abs(mve)>0 and not climb:
-			attacking = false
+		if (grounded) and not climb and (not attacking): 
+			$AnimationTree.set("parameters/in_air_state/current",0)		
+			if mve == 0 and (not attacking): $AnimationTree.set("parameters/movement/current",0)
+		if abs(mve) > 0: 
 			$AnimationTree.set("parameters/movement/current",1)
+			attacking = false
+				# attack implementation
+		if Input.is_action_pressed("attack") and canIAttack and (not climb):
+			timer.start()
+			canIAttack = false
+			attacking = true			
+			$AnimationTree.set("parameters/movement/current",2)
+	
+
+		if (not climb) and (not grounded) and (not attacking): $AnimationTree.set("parameters/in_air_state/current",1)
+		
 		
 		if climb:
+			$AnimationTree.set("parameters/in_air_state/current",2)
 			if velocity.y == 0: $AnimationTree.set("parameters/on_wall/current",0)
 			else: $AnimationTree.set("parameters/on_wall/current",1)
 		
-		if not climb and not grounded: $AnimationTree.set("parameters/in_air_state/current",1)
 		
-		if climb: $AnimationTree.set("parameters/in_air_state/current",2)
-			
-		if grounded: $AnimationTree.set("parameters/in_air_state/current",0)
+		if damaged: $AnimationTree.set("parameters/in_air_state/current",3)
 
-		# attack implementation
-		if Input.is_action_pressed("attack") and canIAttack:
-			timer.start()
-			canIAttack = false
-			attacking = true
-			$AnimationTree.set("parameters/movement/current",2)
-	
+
+
 
 	
 func _input(event):
@@ -126,21 +151,34 @@ func _input(event):
 
 func _on_Timer_timeout(): attacking = false
 
+
+
 func damage(amount):
 	_set_health(health - amount)
+
+	
 
 func kill():
 	dead = true
 	$CollisionShape2D.disabled = true
-	
+	$AnimationTree.set("parameters/in_air_state/current",3)
+	$AnimationTree.set("parameters/is_damaged/current",1)
 
 
 func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
 	if health != prev_health:
-		emit_signal("health_updated")
+		emit_signal("health_updated",health)
+		print(str(health))
 		if health == 0:
 			kill()
 			emit_signal("killed")
 
+
+
+
+
+
+func _on_dmgTimer_timeout():
+	damaged = false

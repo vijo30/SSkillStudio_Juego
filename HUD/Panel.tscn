@@ -37,6 +37,7 @@ corner_radius_bottom_left = 10
 bg_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 1 )
 
 [node name="Panel" type="Panel"]
 margin_left = -8.0
@@ -102,6 +103,7 @@ margin_top = 11.0
 margin_right = 1935.0
 margin_bottom = 71.0
 theme = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
 value = 100.0

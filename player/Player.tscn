@@ -7,7 +7,7 @@
 extents = Vector2( 26.4688, 42.5 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 26.5, 21.5 )
+extents = Vector2( 30, 22 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 12.25, 20.4999 )
@@ -232,7 +232,7 @@ nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
 nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged" ]
+node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 30.2813, 44.875 )
@@ -248,7 +248,7 @@ shape = SubResource( 10 )
 [node name="GroundDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
-position = Vector2( 0, 21.5 )
+position = Vector2( 0, 22 )
 shape = SubResource( 27 )
 
 [node name="climb_wall" type="Area2D" parent="."]
@@ -256,7 +256,6 @@ shape = SubResource( 27 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
 position = Vector2( -0.024377, -7.49989 )
 rotation = -0.00325031
-scale = Vector2( 1, 1 )
 shape = SubResource( 19 )
 
 [node name="HeroKnight" type="Sprite" parent="."]
@@ -297,6 +296,8 @@ shape = SubResource( 33 )
 [node name="dmgTimer" type="Timer" parent="."]
 wait_time = 0.4
 
+[node name="SpikeTick" type="Timer" parent="."]
+
 [connection signal="body_entered" from="GroundDetector" to="." method="_on_GroundDetector_body_entered"]
 [connection signal="body_exited" from="GroundDetector" to="." method="_on_GroundDetector_body_exited"]
 [connection signal="body_entered" from="climb_wall" to="." method="_on_climb_wall_body_entered"]
@@ -305,3 +306,4 @@ wait_time = 0.4
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
 [connection signal="body_exited" from="CollisionArea" to="." method="_on_CollisionArea_body_exited"]
 [connection signal="timeout" from="dmgTimer" to="." method="_on_dmgTimer_timeout"]
+[connection signal="timeout" from="SpikeTick" to="." method="_on_SpikeTick_timeout"]

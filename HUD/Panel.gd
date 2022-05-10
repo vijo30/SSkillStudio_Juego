@@ -15,3 +15,8 @@ func _on_TimeLeft_timeout():
 func _on_Button_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+
+func _on_Player_killed():
+	$Button.visible = true
+	$TimeLeft.stop()

@@ -36,7 +36,7 @@ onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tr
 # Damaged var
 var damaged = false
 onready var dtimer = get_node("dmgTimer")
-
+onready var stimer = get_node("SpikeTick")
 # Activate animations
 func _ready(): 
 	$AnimationTree.active = true
@@ -46,28 +46,24 @@ func _ready():
 
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group('spikes'): 
-		dtimer.start()
 		print("ouch")
 		damaged = true
 		damage(10)
+		stimer.start()
 	
 
 func _on_CollisionArea_body_exited(body):
-	pass # Replace with function body.
+	stimer.stop()
 
 
 # INNOVATIVE MECHANICS
-func _on_GroundDetector_body_entered(body):
-	if body.is_in_group('tilemap'): grounded = true
+func _on_GroundDetector_body_entered(body): if body.is_in_group('tilemap') or body.is_in_group('spikes'): grounded = true
 
-func _on_GroundDetector_body_exited(body):
-	if body.is_in_group('tilemap'): grounded = false
+func _on_GroundDetector_body_exited(body): if body.is_in_group('tilemap'): grounded = false
 
-func _on_climb_wall_body_entered(body):
-	if body.is_in_group('tilemap'): climb = true
+func _on_climb_wall_body_entered(body): if body.is_in_group('tilemap'): climb = true
 
-func _on_climb_wall_body_exited(body):
-	if body.is_in_group('tilemap'): climb = false
+func _on_climb_wall_body_exited(body): if body.is_in_group('tilemap'): climb = false
 	
 func handleNextLevel():	
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
@@ -99,21 +95,17 @@ func _physics_process(delta):
 		$climb_wall.rotation_degrees = lastDir * 90
 		
 		# Vertical movement	
-		grv = not climb
-		if climb: velocity.y = 0
-		
+		if climb: velocity.y = 0 		
 		# apply gravity
-		if grv: velocity.y += gravity * delta
+		if not climb: velocity.y += gravity * delta
 		
 		# move upwards or downwards on walls
 		if Input.is_action_pressed("move_up") and (climb): velocity.y -= move_speed
 		if Input.is_action_pressed("move_down") and (climb): velocity.y += move_speed
 
-
 		# actually move the player
 		velocity = move_and_slide(velocity, Vector2.UP)
-		
-		
+				
 		# animations	
 		
 		if (grounded) and not climb and (not attacking): 
@@ -155,14 +147,16 @@ func _on_Timer_timeout(): attacking = false
 
 func damage(amount):
 	_set_health(health - amount)
+	dtimer.start()
 
 	
 
 func kill():
 	dead = true
-	$CollisionShape2D.disabled = true
+	set_deferred("$CollisionShape2D.disabled", true) 
 	$AnimationTree.set("parameters/in_air_state/current",3)
 	$AnimationTree.set("parameters/is_damaged/current",1)
+	stimer.stop()
 
 
 func _set_health(value):
@@ -182,3 +176,9 @@ func _set_health(value):
 
 func _on_dmgTimer_timeout():
 	damaged = false
+
+
+func _on_SpikeTick_timeout():
+	print("ouch")
+	damaged = true
+	damage(10)

@@ -134,13 +134,6 @@ func _physics_process(delta):
 		if damaged: $AnimationTree.set("parameters/in_air_state/current",3)
 
 
-
-
-	
-func _input(event):
-	if event.is_action_pressed("exit_game"): get_tree().quit()
-
-
 func _on_Timer_timeout(): attacking = false
 
 

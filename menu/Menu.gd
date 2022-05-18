@@ -20,3 +20,8 @@ func _on_FullscreenButton_pressed():
 func _on_Switch_pressed():
 	$GameMenu.visible = !$GameMenu.visible
 	$GameSettings.visible = !$GameSettings.visible
+
+
+func _on_Switch2_pressed():
+	$Controls.visible = !$Controls.visible
+	$GameSettings.visible = !$GameSettings.visible

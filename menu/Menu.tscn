@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Tileset/Background/CloudsBack.png" type="Texture" id=2]
 [ext_resource path="res://assets/Tileset/Background/CloudsFront.png" type="Texture" id=3]
 [ext_resource path="res://menu/Font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://menu/RemapButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Fonts/m5x7.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 6 )
+
+[sub_resource type="ButtonGroup" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -22,9 +34,11 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
-margin_top = -8.0
-margin_right = 1280.0
-margin_bottom = 723.0
+margin_left = -1.0
+margin_right = 1279.0
+margin_bottom = 731.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 3 )
 expand = true
 
@@ -39,7 +53,7 @@ margin_right = 113.0
 margin_bottom = 142.5
 custom_constants/separation = 21
 
-[node name="Label" type="Label" parent="GameMenu"]
+[node name="GameLabel" type="Label" parent="GameMenu"]
 margin_right = 226.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 4 )
@@ -73,22 +87,219 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -131.0
-margin_top = -46.5
-margin_right = 129.0
-margin_bottom = 166.5
+margin_left = -148.0
+margin_top = -142.5
+margin_right = 148.0
+margin_bottom = 142.5
 custom_constants/separation = 21
 
+[node name="GameSettingsLabel" type="Label" parent="GameSettings"]
+margin_right = 296.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 4 )
+text = "Game Settings"
+align = 1
+
 [node name="FullscreenButton" type="Button" parent="GameSettings"]
-margin_right = 260.0
-margin_bottom = 57.0
+margin_top = 72.0
+margin_right = 296.0
+margin_bottom = 129.0
 custom_fonts/font = ExtResource( 4 )
 text = " Fullscreen "
 
+[node name="ControlsButton" type="Button" parent="GameSettings"]
+margin_top = 150.0
+margin_right = 296.0
+margin_bottom = 207.0
+custom_fonts/font = ExtResource( 4 )
+text = "Controls"
+
 [node name="DoneButton" type="Button" parent="GameSettings"]
-margin_top = 78.0
-margin_right = 260.0
-margin_bottom = 135.0
+margin_top = 228.0
+margin_right = 296.0
+margin_bottom = 285.0
+custom_fonts/font = ExtResource( 4 )
+text = "Done"
+
+[node name="Controls" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -222.0
+margin_top = -203.5
+margin_right = 222.0
+margin_bottom = 202.5
+custom_constants/separation = 10
+
+[node name="ControlsLabel" type="Label" parent="Controls"]
+margin_right = 444.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 3 )
+text = "Controls Settings"
+align = 1
+
+[node name="MoveRight" type="HBoxContainer" parent="Controls"]
+margin_top = 61.0
+margin_right = 444.0
+margin_bottom = 99.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoveRightLabel" type="Label" parent="Controls/MoveRight"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = " Move Right "
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/MoveRight" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "move_right"
+
+[node name="MoveLeft" type="HBoxContainer" parent="Controls"]
+margin_top = 109.0
+margin_right = 444.0
+margin_bottom = 147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoveLeftLabel" type="Label" parent="Controls/MoveLeft"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Move Left"
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/MoveLeft" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "move_left"
+
+[node name="MoveUp" type="HBoxContainer" parent="Controls"]
+margin_top = 157.0
+margin_right = 444.0
+margin_bottom = 195.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoveUpLabel" type="Label" parent="Controls/MoveUp"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Move Up"
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/MoveUp" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "move_up"
+
+[node name="MoveDown" type="HBoxContainer" parent="Controls"]
+margin_top = 205.0
+margin_right = 444.0
+margin_bottom = 243.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoveDownLabel" type="Label" parent="Controls/MoveDown"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Move Down"
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/MoveDown" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "move_down"
+
+[node name="Attack" type="HBoxContainer" parent="Controls"]
+margin_top = 253.0
+margin_right = 444.0
+margin_bottom = 291.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AttackLabel" type="Label" parent="Controls/Attack"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Attack"
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/Attack" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "attack"
+
+[node name="QuitGame" type="HBoxContainer" parent="Controls"]
+margin_top = 301.0
+margin_right = 444.0
+margin_bottom = 339.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuitGameLabel" type="Label" parent="Controls/QuitGame"]
+margin_right = 220.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Quit Game"
+align = 1
+valign = 1
+
+[node name="RemapButton" parent="Controls/QuitGame" instance=ExtResource( 5 )]
+margin_left = 224.0
+margin_right = 444.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 4 )
+action = "exit_game"
+
+[node name="DoneButton" type="Button" parent="Controls"]
+margin_top = 349.0
+margin_right = 444.0
+margin_bottom = 406.0
 custom_fonts/font = ExtResource( 4 )
 text = "Done"
 
@@ -96,4 +307,6 @@ text = "Done"
 [connection signal="pressed" from="GameMenu/OptionsButton" to="." method="_on_Switch_pressed"]
 [connection signal="pressed" from="GameMenu/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="GameSettings/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="pressed" from="GameSettings/ControlsButton" to="." method="_on_Switch2_pressed"]
 [connection signal="pressed" from="GameSettings/DoneButton" to="." method="_on_Switch_pressed"]
+[connection signal="pressed" from="Controls/DoneButton" to="." method="_on_Switch2_pressed"]

@@ -32,6 +32,9 @@ margin_top = -82.0
 margin_right = 2056.0
 margin_bottom = 2.0
 
+[node name="Button" parent="Panel" index="3"]
+visible = false
+
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]
 

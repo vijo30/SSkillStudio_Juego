@@ -10,7 +10,7 @@
 position = Vector2( -1, -1 )
 
 [node name="Level_1_tile" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, 2 )
+position = Vector2( 0, 1 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1836, 217 )

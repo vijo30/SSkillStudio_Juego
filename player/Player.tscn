@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 26.4688, 42.5 )
+extents = Vector2( 26.4688, 40.25 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 30, 22 )
+extents = Vector2( 30, 19.5 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 12.25, 20.4999 )
@@ -206,7 +206,7 @@ input_1/name = "Climb"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=18]
-graph_offset = Vector2( 125, 97.25 )
+graph_offset = Vector2( 160, 27.75 )
 nodes/Animation/node = SubResource( 14 )
 nodes/Animation/position = Vector2( 360, 40 )
 "nodes/Animation 2/node" = SubResource( 12 )
@@ -232,23 +232,23 @@ nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
 nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8" ]
+node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4" ]
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 30.2813, 44.875 )
+extents = Vector2( 30.2813, 42.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 2 )
 move_speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
+position = Vector2( 0, -3.25 )
 shape = SubResource( 10 )
 
 [node name="GroundDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
-position = Vector2( 0, 22 )
+position = Vector2( 0, 19.5 )
 shape = SubResource( 27 )
 
 [node name="climb_wall" type="Area2D" parent="."]
@@ -290,7 +290,7 @@ wait_time = 1.5
 [node name="CollisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
-position = Vector2( 0, -1.125 )
+position = Vector2( 0, -3.5 )
 shape = SubResource( 33 )
 
 [node name="dmgTimer" type="Timer" parent="."]

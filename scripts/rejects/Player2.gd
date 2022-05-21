@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-class_name Player
-
 signal health_updated(health)
 signal killed()
 
@@ -45,7 +43,6 @@ func _ready():
 	next_level.connect("entered", self, "handleNextLevel")
 
 
-# SIGNALS
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group('spikes'): 
 		print("ouch")
@@ -71,7 +68,7 @@ func handleNextLevel():
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
 	
 
-##	
+	
 
 func _process(_delta):
 	if weakref(Manager.progress_bar).get_ref():
@@ -97,43 +94,43 @@ func _physics_process(delta):
 		$climb_wall.rotation_degrees = lastDir * 90
 		
 		# Vertical movement	
-	
+		if climbing: velocity.y = 0 		
 		# apply gravity
 		if not climbing: velocity.y += gravity * delta
 		
 		# move upwards or downwards on walls
-		if climbing: velocity.y = 0 	
 		if Input.is_action_pressed("move_up") and (climbing): velocity.y -= move_speed
 		if Input.is_action_pressed("move_down") and (climbing): velocity.y += move_speed
 
 		# actually move the player
 		velocity = move_and_slide(velocity, Vector2.UP)
 				
-		# ANIMATIONS
+		# animations	
 		
 		if (grounded) and not climbing and (not attacking): 
-			animations.set("parameters/in_air_state/current",0)	 # Grounded animations set
-			if mve == 0 and (not attacking): animations.set("parameters/movement/current",0) # Idle animation
+			animations.set("parameters/in_air_state/current",0)		
+			if mve == 0 and (not attacking): animations.set("parameters/movement/current",0)
 		if abs(mve) > 0: 
-			animations.set("parameters/movement/current",1) # Run animation
+			animations.set("parameters/movement/current",1)
 			attacking = false
-		
-		# attack implementation
-		if Input.is_action_pressed("attack") and canIAttack and (not climbing): 
+				# attack implementation
+		if Input.is_action_pressed("attack") and canIAttack and (not climbing):
 			timer.start()
 			canIAttack = false
 			attacking = true			
-			animations.set("parameters/movement/current",2) # Attack animation	
+			animations.set("parameters/movement/current",2)
+	
 
-		# Fall animation
 		if (not climbing) and (not grounded) and (not attacking): animations.set("parameters/in_air_state/current",1)
 		
-		if climbing:
-			animations.set("parameters/in_air_state/current",2) # Climb animation set
-			if velocity.y == 0: animations.set("parameters/on_wall/current",0) # Climb idle animation
-			else: animations.set("parameters/on_wall/current",1) # Climb animation
 		
-		if damaged: animations.set("parameters/in_air_state/current",3) # Damage animation
+		if climbing:
+			animations.set("parameters/in_air_state/current",2)
+			if velocity.y == 0: animations.set("parameters/on_wall/current",0)
+			else: animations.set("parameters/on_wall/current",1)
+		
+		
+		if damaged: animations.set("parameters/in_air_state/current",3)
 
 
 
@@ -143,7 +140,9 @@ func _input(event):
 	if event.is_action_pressed("exit_game"): get_tree().quit()
 
 
-# Damage and health
+func _on_Timer_timeout(): attacking = false
+
+
 
 func damage(amount):
 	_set_health(health - amount)
@@ -170,6 +169,37 @@ func _set_health(value):
 			kill()
 			emit_signal("killed")
 
+
+func idling_state():
+	if velocity == Vector2.ZERO and climbing:
+		pass
+	if velocity == Vector2.ZERO and not climbing:
+		pass
+	
+		
+
+func running_state():
+	var mve = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	if abs(mve) > 0: 
+		animations.set("parameters/movement/current",1)
+	
+
+func climbing_state():
+	velocity.y = 0 
+	
+
+func falling_state():
+	pass
+	
+func attacking_state():
+	pass
+	
+func damaged_state():
+	pass
+
+func dead_state():
+	pass
+	
 
 
 

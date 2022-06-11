@@ -114,7 +114,7 @@ func _physics_process(delta):
 			$AnimationTree.set("parameters/movement/current",1)
 			attacking = false
 				# attack implementation
-		if Input.is_action_pressed("attack") and canIAttack and (not climb):
+		if Input.is_action_pressed("attack") and canIAttack and (not climb) and (not damaged):
 			timer.start()
 			canIAttack = false
 			attacking = true			
@@ -131,7 +131,6 @@ func _physics_process(delta):
 		
 		
 		if damaged: $AnimationTree.set("parameters/in_air_state/current",3)
-	print(grounded)
 
 func _on_Timer_timeout(): attacking = false
 

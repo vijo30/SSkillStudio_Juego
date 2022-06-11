@@ -50,20 +50,19 @@ func _on_CollisionArea_body_entered(body):
 		damaged = true
 		damage(10)
 		stimer.start()
-	
 
 func _on_CollisionArea_body_exited(body):
-	stimer.stop()
+	if body.is_in_group('spikes'):
+		stimer.stop()
 
 
 # INNOVATIVE MECHANICS
-func _on_GroundDetector_body_entered(body): if body.is_in_group('tilemap') or body.is_in_group('spikes'): grounded = true
 
-func _on_GroundDetector_body_exited(body): if body.is_in_group('tilemap'): grounded = false
+func _on_climb_wall_body_entered(body): 
+	if body.is_in_group('tilemap'): climb = true
 
-func _on_climb_wall_body_entered(body): if body.is_in_group('tilemap'): climb = true
-
-func _on_climb_wall_body_exited(body): if body.is_in_group('tilemap'): climb = false
+func _on_climb_wall_body_exited(body): 
+	if body.is_in_group('tilemap'): climb = false
 	
 func handleNextLevel():	
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
@@ -83,7 +82,7 @@ func _physics_process(delta):
 		# Horizontal movement
 		# reset horizontal velocity
 		velocity.x = 0
-		
+		if is_on_floor(): grounded = true
 		# set horizontal velocity
 		var mve = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		velocity.x = mve * move_speed
@@ -108,10 +107,10 @@ func _physics_process(delta):
 				
 		# animations	
 		
-		if (grounded) and not climb and (not attacking): 
+		if (grounded) and (not attacking): 
 			$AnimationTree.set("parameters/in_air_state/current",0)		
-			if mve == 0 and (not attacking): $AnimationTree.set("parameters/movement/current",0)
-		if abs(mve) > 0: 
+		if velocity == Vector2.ZERO and (not attacking): $AnimationTree.set("parameters/movement/current",0)
+		if abs(velocity.x) >0 and (grounded) : 
 			$AnimationTree.set("parameters/movement/current",1)
 			attacking = false
 				# attack implementation
@@ -132,7 +131,7 @@ func _physics_process(delta):
 		
 		
 		if damaged: $AnimationTree.set("parameters/in_air_state/current",3)
-
+	print(grounded)
 
 func _on_Timer_timeout(): attacking = false
 

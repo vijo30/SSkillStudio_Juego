@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
@@ -6,11 +6,8 @@
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 26.4688, 42.5 )
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 30, 22 )
-
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 12.25, 20.4999 )
+extents = Vector2( 6.99834, 22.4983 )
 
 [sub_resource type="Animation" id=22]
 resource_name = "Attack"
@@ -232,30 +229,26 @@ nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
 nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8" ]
+node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged" ]
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 30.2813, 44.875 )
+extents = Vector2( 27, 43.2188 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource( 2 )
 move_speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
 shape = SubResource( 10 )
-
-[node name="GroundDetector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
-position = Vector2( 0, 22 )
-shape = SubResource( 27 )
 
 [node name="climb_wall" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
-position = Vector2( -0.024377, -7.49989 )
+position = Vector2( -0.00324534, -9.49835 )
 rotation = -0.00325031
+scale = Vector2( 1, 1 )
 shape = SubResource( 19 )
 
 [node name="HeroKnight" type="Sprite" parent="."]
@@ -290,7 +283,7 @@ wait_time = 1.5
 [node name="CollisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
-position = Vector2( 0, -1.125 )
+position = Vector2( 0, -0.21875 )
 shape = SubResource( 33 )
 
 [node name="dmgTimer" type="Timer" parent="."]
@@ -298,8 +291,6 @@ wait_time = 0.4
 
 [node name="SpikeTick" type="Timer" parent="."]
 
-[connection signal="body_entered" from="GroundDetector" to="." method="_on_GroundDetector_body_entered"]
-[connection signal="body_exited" from="GroundDetector" to="." method="_on_GroundDetector_body_exited"]
 [connection signal="body_entered" from="climb_wall" to="." method="_on_climb_wall_body_entered"]
 [connection signal="body_exited" from="climb_wall" to="." method="_on_climb_wall_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

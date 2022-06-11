@@ -31,7 +31,8 @@ var canIAttack = false
 var attacking = false
 onready var timer = get_node("Timer")
 onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tree().current_scene.name))+"/Next_level")
-
+onready var skeleton = get_tree().get_root().find_node("Skeleton", true, false)
+onready var skeleton2 = get_tree().get_root().find_node("Skeleton2", true, false)
 
 # Damaged var
 var damaged = false
@@ -41,6 +42,9 @@ onready var stimer = get_node("SpikeTick")
 func _ready(): 
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
+	skeleton.connect("skeleton_attack", self, "handleSkeleton")
+	skeleton2.connect("skeleton_attack", self, "handleSkeleton")
+	
 
 
 
@@ -67,8 +71,9 @@ func _on_climb_wall_body_exited(body):
 func handleNextLevel():	
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
 	
-
-	
+func handleSkeleton():
+	damage(10)
+	damaged = true
 
 func _process(_delta):
 	if weakref(Manager.progress_bar).get_ref():
@@ -87,12 +92,15 @@ func _physics_process(delta):
 		# set horizontal velocity
 		var mve = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		velocity.x = mve * move_speed
-
-		if mve > 0: $HeroKnight.flip_h = false
-		if mve < 0: $HeroKnight.flip_h = true
+		
+		if mve > 0: 
+			$HeroKnight.flip_h = false
+		if mve < 0: 
+			$HeroKnight.flip_h = true
 		# set direction of climb_wall	
 		if mve != 0: lastDir = mve
 		$climb_wall.rotation_degrees = lastDir * 90
+		$AttackDetector.rotation_degrees = lastDir * 90
 		
 		# Vertical movement	
 		if climb: velocity.y = 0 		
@@ -115,13 +123,16 @@ func _physics_process(delta):
 			$AnimationTree.set("parameters/movement/current",1)
 			attacking = false
 				# attack implementation
-		if Input.is_action_pressed("attack") and canIAttack and (not climb) and (not damaged):
+		if Input.is_action_pressed("attack") and canIAttack and (not climb):
 			timer.start()
 			canIAttack = false
-			attacking = true			
+			attacking = true
+			
 			$AnimationTree.set("parameters/movement/current",2)
 	
-
+		if attacking: $AttackDetector/CollisionShape2D.disabled = false	
+		if not attacking: $AttackDetector/CollisionShape2D.disabled = true
+		
 		if (not climb) and (not grounded) and (not attacking): $AnimationTree.set("parameters/in_air_state/current",1)
 		
 		
@@ -145,7 +156,10 @@ func damage(amount):
 
 func kill():
 	dead = true
-	set_deferred("$CollisionShape2D.disabled", true) 
+	$CollisionShape2D.set_deferred("disabled", true)
+	$CollisionArea/CollisionShape2D.set_deferred("disabled", true)
+	$climb_wall/CollisionShape2D.set_deferred("disabled", true)
+	$AttackDetector/CollisionShape2D.set_deferred("disabled",true)
 	$AnimationTree.set("parameters/in_air_state/current",3)
 	$AnimationTree.set("parameters/is_damaged/current",1)
 	stimer.stop()
@@ -174,3 +188,7 @@ func _on_SpikeTick_timeout():
 	print("ouch")
 	damaged = true
 	damage(10)
+
+
+		
+

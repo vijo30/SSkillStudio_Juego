@@ -3,33 +3,39 @@ extends KinematicBody2D
 
 signal health_updated(health)
 signal killed()
+signal skeleton_attack
 
 export var move_speed := 500
 export var gravity := 2000
+
 
 var velocity := Vector2.ZERO
 
 # Health
 
-export var max_health = 100
+export var max_health = 1
 onready var health = max_health setget _set_health
 
 var is_moving_left = false
 var attacking = false
-
+var damaged = false
+var dead = false
 
 func _ready():
 	$AnimatedSprite.playing = true
-	
+
+
+
 
 
 func _physics_process(delta):
-	if not attacking:
-		$AnimatedSprite.set_animation("Walk")
-	elif attacking:
-		$AnimatedSprite.set_animation("Attack")
-	move_character()
-	detect_turn_around()
+	if not dead:
+		if not attacking:
+			$AnimatedSprite.set_animation("Walk")
+		elif attacking:
+			$AnimatedSprite.set_animation("Attack")
+		move_character()
+		detect_turn_around()
 	
 func move_character():
 	velocity.x = -move_speed if is_moving_left else move_speed
@@ -50,7 +56,12 @@ func damage(amount):
 	
 
 func kill():
-	set_deferred("$CollisionShape2D.disabled", true) 
+	dead = true
+	$CollisionShape2D.set_deferred("disabled", true)
+	$PlayerDetector/CollisionShape2D.set_deferred("disabled", true)
+	$AttackDetector/CollisionShape2D.set_deferred("disabled", true)
+	$RayCast2D.set_deferred("disabled", true)
+	$AnimatedSprite.set_animation("Death")
 
 
 
@@ -67,13 +78,29 @@ func _set_health(value):
 
 func _on_PlayerDetector_area_entered(area):
 	attacking = true
+	
 
 
 func _on_AttackDetector_area_entered(area):
-	get_tree().reload_current_scene()
+	$AttackTimer.start()
+	
+
 
 
 
 
 func _on_PlayerDetector_area_exited(area):
 	attacking = false
+
+
+func _on_AttackTimer_timeout():
+	emit_signal("skeleton_attack")
+
+
+func _on_AttackDetector_area_exited(area):
+	$AttackTimer.stop()
+
+
+func _on_Hitbox_area_entered(area):
+	if area.is_in_group("sword"):
+		kill()

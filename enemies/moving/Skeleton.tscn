@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://enemies/moving/Skeleton.gd" type="Script" id=1]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Skeleton/Idle.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Skeleton/Death.png" type="Texture" id=4]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Skeleton/Walk.png" type="Texture" id=5]
 [ext_resource path="res://assets/Monsters_Creatures_Fantasy/Skeleton/Attack.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 15, 26 )
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -132,7 +135,7 @@ animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "Attack",
-"speed": 5.0
+"speed": 3.75
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
@@ -140,7 +143,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
+"loop": false,
 "name": "Death",
 "speed": 5.0
 }, {
@@ -156,27 +159,33 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 15.125, 26.125 )
+extents = Vector2( 14.5, 24.5313 )
 
 [sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 25.5, 11.5 )
+extents = Vector2( 26, 11.5 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 25, 5 )
+extents = Vector2( 24.25, 7.25 )
 
-[node name="Skeleton" type="KinematicBody2D"]
+[node name="Skeleton" type="KinematicBody2D" groups=["enemies"]]
 scale = Vector2( 2, 2 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 1 )
 move_speed = 200
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 29 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 25 )
-animation = "Attack"
+animation = "Death"
 speed_scale = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2( 0, -0.03125 )
 shape = SubResource( 26 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -189,19 +198,22 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 43, -1.5 )
+position = Vector2( 41.5, -1 )
 shape = SubResource( 27 )
 
 [node name="AttackDetector" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
-monitoring = false
-monitorable = false
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
-position = Vector2( 43, -1 )
+position = Vector2( 39.75, -1.5 )
 shape = SubResource( 28 )
 
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_area_entered"]
 [connection signal="area_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_area_exited"]
 [connection signal="area_entered" from="AttackDetector" to="." method="_on_AttackDetector_area_entered"]
+[connection signal="area_exited" from="AttackDetector" to="." method="_on_AttackDetector_area_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

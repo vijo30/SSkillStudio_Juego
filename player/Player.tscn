@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/Hero Knight/Sprites/HeroKnight/HeroKnight.png" type="Texture" id=3]
@@ -234,9 +234,10 @@ node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "m
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 26, 41.7188 )
 
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 39, 32.5 )
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
-collision_layer = 2
-collision_mask = 6
 script = ExtResource( 2 )
 move_speed = 500
 
@@ -290,6 +291,15 @@ shape = SubResource( 33 )
 wait_time = 0.4
 
 [node name="SpikeTick" type="Timer" parent="."]
+
+[node name="AttackDetector" type="Area2D" parent="." groups=["sword"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
+modulate = Color( 1, 0, 0.843137, 1 )
+show_behind_parent = true
+position = Vector2( 0, -57.5 )
+shape = SubResource( 34 )
+disabled = true
 
 [connection signal="body_entered" from="climb_wall" to="." method="_on_climb_wall_body_entered"]
 [connection signal="body_exited" from="climb_wall" to="." method="_on_climb_wall_body_exited"]

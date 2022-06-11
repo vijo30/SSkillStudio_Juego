@@ -83,6 +83,7 @@ func _physics_process(delta):
 		# reset horizontal velocity
 		velocity.x = 0
 		if is_on_floor(): grounded = true
+		if not is_on_floor(): grounded = false
 		# set horizontal velocity
 		var mve = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		velocity.x = mve * move_speed

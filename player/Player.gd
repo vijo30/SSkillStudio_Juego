@@ -42,8 +42,9 @@ onready var stimer = get_node("SpikeTick")
 func _ready(): 
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
-	skeleton.connect("skeleton_attack", self, "handleSkeleton")
-	skeleton2.connect("skeleton_attack", self, "handleSkeleton")
+	if next_level == get_tree().get_root().get_node("Level_1/Next_level"):
+		skeleton.connect("skeleton_attack", self, "handleSkeleton")
+		skeleton2.connect("skeleton_attack", self, "handleSkeleton")
 	
 
 
@@ -142,7 +143,7 @@ func _physics_process(delta):
 			else: $AnimationTree.set("parameters/on_wall/current",1)
 		
 		
-		if damaged: $AnimationTree.set("parameters/in_air_state/current",3)
+		if damaged and not attacking: $AnimationTree.set("parameters/in_air_state/current",3)
 
 func _on_Timer_timeout(): attacking = false
 

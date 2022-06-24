@@ -31,8 +31,7 @@ var canIAttack = false
 var attacking = false
 onready var timer = get_node("Timer")
 onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tree().current_scene.name))+"/Next_level")
-onready var skeleton = get_tree().get_root().find_node("Skeleton", true, false)
-onready var skeleton2 = get_tree().get_root().find_node("Skeleton2", true, false)
+
 
 # Damaged var
 var damaged = false
@@ -42,9 +41,7 @@ onready var stimer = get_node("SpikeTick")
 func _ready(): 
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
-	if next_level == get_tree().get_root().get_node("Level_1/Next_level"):
-		skeleton.connect("skeleton_attack", self, "handleSkeleton")
-		skeleton2.connect("skeleton_attack", self, "handleSkeleton")
+
 	
 
 
@@ -55,6 +52,7 @@ func _on_CollisionArea_body_entered(body):
 		damaged = true
 		damage(10)
 		stimer.start()
+
 
 func _on_CollisionArea_body_exited(body):
 	if body.is_in_group('spikes'):
@@ -72,9 +70,7 @@ func _on_climb_wall_body_exited(body):
 func handleNextLevel():	
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
 	
-func handleSkeleton():
-	damage(10)
-	damaged = true
+
 
 func _process(_delta):
 	if weakref(Manager.progress_bar).get_ref():
@@ -193,3 +189,10 @@ func _on_SpikeTick_timeout():
 
 		
 
+
+
+func _on_CollisionArea_area_entered(area):
+	if area.is_in_group('enemieAttack'):
+		print("ouch")
+		damaged = true
+		damage(10)

@@ -20,6 +20,8 @@ var is_moving_left = false
 var attacking = false
 var damaged = false
 var dead = false
+onready var atkTimer = $AttackTimer
+onready var offTimer = $OffTimer
 
 func _ready():
 	$AnimatedSprite.playing = true
@@ -32,10 +34,13 @@ func _physics_process(delta):
 	if not dead:
 		if not attacking:
 			$AnimatedSprite.set_animation("Walk")
+
 		elif attacking:
 			$AnimatedSprite.set_animation("Attack")
+			
 		move_character()
 		detect_turn_around()
+
 	
 func move_character():
 	velocity.x = -move_speed if is_moving_left else move_speed
@@ -78,11 +83,12 @@ func _set_health(value):
 
 func _on_PlayerDetector_area_entered(area):
 	attacking = true
+	atkTimer.start()
 	
 
 
 func _on_AttackDetector_area_entered(area):
-	$AttackTimer.start()
+	print("")
 	
 
 
@@ -91,16 +97,31 @@ func _on_AttackDetector_area_entered(area):
 
 func _on_PlayerDetector_area_exited(area):
 	attacking = false
+	atkTimer.stop()
 
 
 func _on_AttackTimer_timeout():
-	emit_signal("skeleton_attack")
-
+	$AttackDetector/CollisionShape2D.disabled = false
+	print("On")
 
 func _on_AttackDetector_area_exited(area):
-	$AttackTimer.stop()
+	pass
+	
 
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("sword"):
 		kill()
+
+
+func _on_OffTimer_timeout():
+	$AttackDetector/CollisionShape2D.disabled = true
+	print("Off")
+
+
+func _on_AttackDetector2_area_entered(area):
+	offTimer.start()
+
+
+func _on_AttackDetector2_area_exited(area):
+	offTimer.stop()

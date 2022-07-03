@@ -11,9 +11,6 @@
 
 [node name="Level_2_tile" parent="." instance=ExtResource( 1 )]
 
-[node name="Next_level" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1928, 469 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 183, 1101 )
 
@@ -42,6 +39,10 @@ margin_left = 880.0
 margin_top = 426.0
 margin_right = 1267.0
 margin_bottom = 870.0
+
+[node name="Next_level" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1899, 458 )
+frame = 5
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

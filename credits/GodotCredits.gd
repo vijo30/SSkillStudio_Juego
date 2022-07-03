@@ -31,8 +31,9 @@ var credits = [
 		"Art",
 		"Monsters Creatures Fantasy by LuizMelo",
 		"Spikes by Omniclause",
-		"Free Swamp 2D Tileset Pixel Art by Free and Premium Game Assets (GUI, Sprite, Tilesets)",
-		"m5x7 font by Daniel Linssen"
+		"Free Swamp 2D Tileset Pixel Art by 'Free and Premium Game Assets (GUI, Sprite, Tilesets)'",
+		"m5x7 font by Daniel Linssen",
+		"2D Pixel Art Portal Sprites by Elthen's Pixel Art Shop"
 	],[
 		"Music",
 		"None"

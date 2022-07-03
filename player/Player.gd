@@ -195,4 +195,4 @@ func _on_CollisionArea_area_entered(area):
 	if area.is_in_group('enemieAttack'):
 		print("ouch")
 		damaged = true
-		damage(10)
+		damage(30)

@@ -28,9 +28,10 @@ margin_bottom = 715.0
 
 [node name="Line" type="Label" parent="CreditsContainer"]
 anchor_right = 1.0
-margin_top = 1080.0
-margin_right = -25.0
-margin_bottom = 1131.0
+margin_left = 1.0
+margin_top = 775.0
+margin_right = -24.0
+margin_bottom = 826.0
 size_flags_horizontal = 3
 theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )

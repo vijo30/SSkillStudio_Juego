@@ -196,3 +196,8 @@ func _on_CollisionArea_area_entered(area):
 		print("ouch")
 		damaged = true
 		damage(30)
+	if area.is_in_group("killerArea"):
+		damage(100)
+
+
+

@@ -229,7 +229,7 @@ nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
 nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5" ]
+node_connections = [ "output", 0, "in_air_state", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 26, 41.7188 )
@@ -238,6 +238,8 @@ extents = Vector2( 26, 41.7188 )
 extents = Vector2( 39, 32.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 move_speed = 500
 
@@ -248,7 +250,7 @@ shape = SubResource( 10 )
 [node name="climb_wall" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="climb_wall"]
-position = Vector2( -1.19209e-07, -13 )
+position = Vector2( 0, -17 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 19 )
 
@@ -258,7 +260,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 10
 vframes = 9
-frame = 18
+frame = 36
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 22 )
@@ -284,7 +286,7 @@ wait_time = 1.5
 [node name="CollisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
-position = Vector2( 0, -2 )
+position = Vector2( 0, -3 )
 shape = SubResource( 33 )
 
 [node name="dmgTimer" type="Timer" parent="."]
@@ -293,6 +295,7 @@ wait_time = 0.4
 [node name="SpikeTick" type="Timer" parent="."]
 
 [node name="AttackDetector" type="Area2D" parent="." groups=["sword"]]
+position = Vector2( -1, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
 modulate = Color( 1, 0, 0.843137, 1 )

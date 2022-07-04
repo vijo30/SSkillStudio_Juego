@@ -52,7 +52,6 @@ func move_character():
 func detect_turn_around():
 	if not $RayCast2D.is_colliding() and is_on_floor():
 		is_moving_left = not is_moving_left
-		print("Turn around")
 		scale.x = -scale.x
 
 func damage(amount):
@@ -85,10 +84,11 @@ func _on_PlayerDetector_area_entered(area):
 	attacking = true
 	atkTimer.start()
 	
+	
 
 
 func _on_AttackDetector_area_entered(area):
-	print("")
+	pass
 	
 
 
@@ -98,6 +98,7 @@ func _on_AttackDetector_area_entered(area):
 func _on_PlayerDetector_area_exited(area):
 	attacking = false
 	atkTimer.stop()
+	
 
 
 func _on_AttackTimer_timeout():

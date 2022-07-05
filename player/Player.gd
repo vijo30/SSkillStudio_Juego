@@ -32,6 +32,8 @@ var attacking = false
 onready var timer = get_node("Timer")
 onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tree().current_scene.name))+"/Next_level")
 
+# callampita
+var actualMushroom
 
 # Damaged var
 var damaged = false
@@ -41,9 +43,6 @@ onready var stimer = get_node("SpikeTick")
 func _ready(): 
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
-
-	
-
 
 
 func _on_CollisionArea_body_entered(body):
@@ -70,7 +69,6 @@ func _on_climb_wall_body_exited(body):
 func handleNextLevel():	
 	print("res://levels/Level_" + str(int(get_tree().current_scene.name) + 1) + ".tscn")
 	
-
 
 func _process(_delta):
 	if weakref(Manager.progress_bar).get_ref():
@@ -149,8 +147,6 @@ func damage(amount):
 	_set_health(health - amount)
 	dtimer.start()
 
-	
-
 func kill():
 	dead = true
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -173,10 +169,6 @@ func _set_health(value):
 			emit_signal("killed")
 
 
-
-
-
-
 func _on_dmgTimer_timeout():
 	damaged = false
 
@@ -197,4 +189,16 @@ func _on_CollisionArea_area_entered(area):
 		damaged = true
 		damage(10)
 
+func consumeMushroom(mushroom):
+	$eatTimer.start()
+	actualMushroom = mushroom
 
+
+func _on_eatTimer_timeout():
+	if actualMushroom == "1":
+		_set_health(health-10)
+	if actualMushroom == "2":
+		_set_health(health+10)
+	if actualMushroom == "3":
+		self.position.x = Manager.teleportPlace[Manager.actualLevel][0]
+		self.position.y = Manager.teleportPlace[Manager.actualLevel][1]

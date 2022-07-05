@@ -186,11 +186,6 @@ func _on_SpikeTick_timeout():
 	damaged = true
 	damage(10)
 
-
-		
-
-
-
 func _on_CollisionArea_area_entered(area):
 	if area.is_in_group('enemieAttack'):
 		print("ouch")
@@ -198,6 +193,8 @@ func _on_CollisionArea_area_entered(area):
 		damage(30)
 	if area.is_in_group("killerArea"):
 		damage(100)
-
+	if area.is_in_group("bullet"):
+		damaged = true
+		damage(10)
 
 

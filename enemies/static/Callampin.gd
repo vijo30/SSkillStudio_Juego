@@ -6,6 +6,7 @@ signal killed()
 var direction = 1
 export var max_health = 1
 onready var health = max_health setget _set_health
+var Balallampa = preload("res://enemies/static/Balallampa.tscn")
 
 var attacking = false
 var damaged = false
@@ -35,6 +36,7 @@ func try_to_attack():
 	if alert == true and attacking ==false:
 		$AnimatedCallampin.set_animation("attack")
 		$attackTimer.start()
+		$delayTimer.start() # timer para animacion bala
 		attacking = true
 
 # pa volver a atacar
@@ -75,3 +77,11 @@ func _on_Hitbox_area_entered(area):
 func _on_AnimatedCallampin_animation_finished():
 	if $AnimatedCallampin.animation == "attack":
 		$AnimatedCallampin.set_animation("idle")
+
+
+func _on_delayTimer_timeout():
+	var balallampa = Balallampa.instance()
+	balallampa.global_position = $SpawnBalallampa.global_position
+	get_parent().add_child(balallampa)
+	balallampa.set_direction(direction)
+	balallampa.fire_to(Vector2($SpawnBalallampa.global_position.x, self.position.y))

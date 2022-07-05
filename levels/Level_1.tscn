@@ -16,10 +16,10 @@ position = Vector2( -1, -1 )
 position = Vector2( 1, 0 )
 
 [node name="Callampin" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1161, 834 )
+position = Vector2( 836, 840 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 127, 1118 )
+position = Vector2( 973, 438 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1026, 571 )
@@ -38,7 +38,7 @@ position = Vector2( 668, 298 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1852, 204 )
-frame = 4
+frame = 1
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -48,6 +48,7 @@ margin_right = 1267.0
 margin_bottom = 870.0
 
 [node name="Panel" parent="." instance=ExtResource( 6 )]
+self_modulate = Color( 1, 0.635294, 0.968627, 1 )
 margin_left = 1.0
 margin_top = -82.0
 margin_right = 2056.0

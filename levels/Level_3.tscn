@@ -46,7 +46,7 @@ margin_bottom = 870.0
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1899, 458 )
-frame = 6
+frame = 2
 
 [node name="Skeleton" parent="." instance=ExtResource( 7 )]
 position = Vector2( 852, 1094 )

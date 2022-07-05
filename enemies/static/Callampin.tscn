@@ -1,0 +1,162 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Idle.png" type="Texture" id=1]
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Death.png" type="Texture" id=2]
+[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Attack3.png" type="Texture" id=3]
+[ext_resource path="res://enemies/static/Callampin.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 21 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 600, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 750, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 900, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1050, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1200, 0, 150, 150 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "attack",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 48.5, 21 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 18, 23 )
+
+[node name="Callampin" type="KinematicBody2D" groups=["enemies"]]
+scale = Vector2( 2.5, 2.5 )
+script = ExtResource( 4 )
+
+[node name="CallampinCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="AnimatedCallampin" type="AnimatedSprite" parent="."]
+frames = SubResource( 19 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="attackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CallampinBack" type="RayCast2D" parent="."]
+position = Vector2( 0, 9 )
+scale = Vector2( 1, 5 )
+enabled = true
+cast_to = Vector2( -300, 0 )
+collision_mask = 3
+
+[node name="AttackRangeArea" type="Area2D" parent="."]
+position = Vector2( -1, 0 )
+
+[node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
+position = Vector2( 66, 8 )
+shape = SubResource( 20 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, 8.4 )
+shape = SubResource( 21 )
+
+[connection signal="animation_finished" from="AnimatedCallampin" to="." method="_on_AnimatedCallampin_animation_finished"]
+[connection signal="timeout" from="attackTimer" to="." method="_on_attackTimer_timeout"]
+[connection signal="body_entered" from="AttackRangeArea" to="." method="_on_AttackRangeArea_body_entered"]
+[connection signal="body_exited" from="AttackRangeArea" to="." method="_on_AttackRangeArea_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

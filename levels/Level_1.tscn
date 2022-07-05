@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level_tiles/Level_1_tile.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://levels/level_switcher/Next_level.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD/Panel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enemies/moving/Skeleton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/static/Callampin.tscn" type="PackedScene" id=8]
 
 [node name="Level_1" type="Node2D"]
 position = Vector2( -1, -1 )
@@ -14,8 +15,11 @@ position = Vector2( -1, -1 )
 [node name="Level_1_tile" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1, 0 )
 
+[node name="Callampin" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1161, 834 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 126, 1113 )
+position = Vector2( 127, 1118 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1026, 571 )
@@ -34,7 +38,7 @@ position = Vector2( 668, 298 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1852, 204 )
-frame = 6
+frame = 4
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false

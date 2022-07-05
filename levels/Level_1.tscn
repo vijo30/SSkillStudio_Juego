@@ -38,7 +38,7 @@ position = Vector2( 686, 290 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1852, 204 )
-frame = 0
+frame = 5
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false

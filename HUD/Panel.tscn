@@ -1,9 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://HUD/ProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://assets/items/82_pizza_dish.png" type="Texture" id=2]
 [ext_resource path="res://HUD/Panel.gd" type="Script" id=3]
 [ext_resource path="res://HUD/HealthBar.gd" type="Script" id=4]
 [ext_resource path="res://assets/Fonts/m5x7.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://music/swamp.ogg" type="AudioStream" id=6]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.239216, 0.145098, 0.231373, 1 )
 
 [sub_resource type="Theme" id=2]
 
@@ -50,7 +55,7 @@ size = 64
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 1, 0, 0, 1 )
+bg_color = Color( 0.713726, 0.0823529, 0.0823529, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -68,14 +73,15 @@ margin_left = -8.0
 margin_top = -80.0
 margin_right = 2063.0
 margin_bottom = 4.0
+custom_styles/panel = SubResource( 12 )
 script = ExtResource( 3 )
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 light_mask = 0
-margin_left = 266.0
-margin_top = 10.0
-margin_right = 532.0
-margin_bottom = 64.0
+margin_left = 383.0
+margin_top = 13.0
+margin_right = 649.0
+margin_bottom = 67.0
 theme = SubResource( 2 )
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
@@ -83,7 +89,8 @@ percent_visible = false
 script = ExtResource( 1 )
 
 [node name="TimeLeft" type="Timer" parent="."]
-wait_time = 100.0
+wait_time = 15.0
+one_shot = true
 autostart = true
 
 [node name="TimeLabel" type="Label" parent="."]
@@ -97,6 +104,7 @@ valign = 1
 
 [node name="Button" type="Button" parent="."]
 pause_mode = 2
+visible = false
 margin_left = 680.0
 margin_top = 697.0
 margin_right = 1392.0
@@ -118,9 +126,9 @@ align = 1
 valign = 1
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-margin_left = 1544.0
+margin_left = 1483.0
 margin_top = 13.0
-margin_right = 1810.0
+margin_right = 1749.0
 margin_bottom = 67.0
 theme = SubResource( 5 )
 custom_fonts/font = SubResource( 9 )
@@ -129,5 +137,50 @@ custom_styles/bg = SubResource( 7 )
 value = 100.0
 script = ExtResource( 4 )
 
+[node name="Lifes" type="Node" parent="."]
+
+[node name="pizza1" type="Sprite" parent="Lifes"]
+visible = false
+position = Vector2( 1805, -42 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="pizza2" type="Sprite" parent="Lifes"]
+visible = false
+position = Vector2( 1877, -42 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="pizza3" type="Sprite" parent="Lifes"]
+visible = false
+position = Vector2( 1948, -42 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+margin_left = 642.0
+margin_top = 548.0
+margin_right = 1412.0
+margin_bottom = 726.0
+custom_fonts/font = SubResource( 10 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="turutuTimer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="backTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
 [connection signal="timeout" from="TimeLeft" to="." method="_on_TimeLeft_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
+[connection signal="timeout" from="turutuTimer" to="." method="_on_turutuTimer_timeout"]

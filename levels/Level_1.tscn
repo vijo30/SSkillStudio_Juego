@@ -38,6 +38,7 @@ position = Vector2( 686, 290 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1852, 204 )
+frame = 4
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -47,14 +48,13 @@ margin_right = 1267.0
 margin_bottom = 870.0
 
 [node name="Panel" parent="." instance=ExtResource( 6 )]
-self_modulate = Color( 1, 0.635294, 0.968627, 1 )
 margin_left = 1.0
 margin_top = -82.0
 margin_right = 2056.0
 margin_bottom = 2.0
 
-[node name="Button" parent="Panel" index="3"]
-visible = false
+[node name="TimeLeft" parent="Panel" index="1"]
+wait_time = 100.0
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

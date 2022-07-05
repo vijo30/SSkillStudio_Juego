@@ -37,7 +37,7 @@ tile_data = PoolIntArray( 393225, 1, 0, 458761, 1, 0, 655375, 1, 0, 720911, 1, 0
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1995, 1130 )
-frame = 6
+frame = 5
 
 [node name="KillerArea" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1106, 1373 )
@@ -62,17 +62,13 @@ margin_right = 1267.0
 margin_bottom = 870.0
 
 [node name="Panel" parent="." instance=ExtResource( 3 )]
-self_modulate = Color( 1, 0.635294, 0.968627, 1 )
-margin_left = -18.0
-margin_top = -84.0
-margin_right = 2051.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = -82.0
+margin_right = 2056.0
+margin_bottom = 2.0
 
 [node name="TimeLeft" parent="Panel" index="1"]
-wait_time = 60.0
-
-[node name="Button" parent="Panel" index="3"]
-visible = false
+wait_time = 100.0
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

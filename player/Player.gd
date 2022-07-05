@@ -42,6 +42,7 @@ onready var dtimer = get_node("dmgTimer")
 onready var stimer = get_node("SpikeTick")
 # Activate animations
 func _ready(): 
+	_set_health(Manager.actualHealth)
 	$AnimationTree.active = true
 	next_level.connect("entered", self, "handleNextLevel")
 

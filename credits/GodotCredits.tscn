@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://credits/GodotCredits.gd" type="Script" id=1]
 [ext_resource path="res://menu/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://music/credits.mp3" type="AudioStream" id=3]
 
 [sub_resource type="Theme" id=1]
 
@@ -37,3 +38,8 @@ theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "Credits line"
 align = 1
+
+[node name="credits" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+autoplay = true

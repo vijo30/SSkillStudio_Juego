@@ -61,6 +61,7 @@ func damage(amount):
 
 func kill():
 	dead = true
+	$Sounds/death.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$PlayerDetector/CollisionShape2D.set_deferred("disabled", true)
 	$AttackDetector/CollisionShape2D.set_deferred("disabled", true)
@@ -103,6 +104,7 @@ func _on_PlayerDetector_area_exited(area):
 
 func _on_AttackTimer_timeout():
 	$AttackDetector/CollisionShape2D.disabled = false
+	$Sounds/attack.play()
 	print("On")
 
 func _on_AttackDetector_area_exited(area):

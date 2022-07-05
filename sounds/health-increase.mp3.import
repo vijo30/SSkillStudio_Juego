@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/health-increase.mp3-e1b3ebc61371d9c39e2c43671e163808.mp3str"
+
+[deps]
+
+source_file="res://sounds/health-increase.mp3"
+dest_files=[ "res://.import/health-increase.mp3-e1b3ebc61371d9c39e2c43671e163808.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

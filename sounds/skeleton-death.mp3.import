@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/skeleton-death.mp3-90991850d5cc6c7ea202892a3700ce6d.mp3str"
+
+[deps]
+
+source_file="res://sounds/skeleton-death.mp3"
+dest_files=[ "res://.import/skeleton-death.mp3-90991850d5cc6c7ea202892a3700ce6d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

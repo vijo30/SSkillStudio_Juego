@@ -32,8 +32,9 @@ var attacking = false
 onready var timer = get_node("Timer")
 onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tree().current_scene.name))+"/Next_level")
 
-# callampita
+# callampitas
 var actualMushroom
+var mushroomSound
 
 # Damaged var
 var damaged = false
@@ -144,11 +145,14 @@ func _on_Timer_timeout(): attacking = false
 
 
 func damage(amount):
+	if amount == 10:
+		$Sounds/pain1.play()
 	_set_health(health - amount)
 	dtimer.start()
 
 func kill():
 	dead = true
+	$Sounds/death.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$CollisionArea/CollisionShape2D.set_deferred("disabled", true)
 	$climb_wall/CollisionShape2D.set_deferred("disabled", true)
@@ -180,6 +184,7 @@ func _on_SpikeTick_timeout():
 
 func _on_CollisionArea_area_entered(area):
 	if area.is_in_group('enemieAttack'):
+		$Sounds/pain2.play()
 		print("ouch")
 		damaged = true
 		damage(30)
@@ -191,8 +196,9 @@ func _on_CollisionArea_area_entered(area):
 
 func consumeMushroom(mushroom):
 	$eatTimer.start()
+	$Sounds/eat.play()
+	mushroomSound = "Sounds/mushroom" + mushroom
 	actualMushroom = mushroom
-
 
 func _on_eatTimer_timeout():
 	if actualMushroom == "1":
@@ -202,3 +208,4 @@ func _on_eatTimer_timeout():
 	if actualMushroom == "3":
 		self.position.x = Manager.teleportPlace[Manager.actualLevel][0]
 		self.position.y = Manager.teleportPlace[Manager.actualLevel][1]
+	get_node(mushroomSound).play()

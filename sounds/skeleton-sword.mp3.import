@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/skeleton-sword.mp3-63fe416a9b501cea4a3b8a7fe3b47b64.mp3str"
+
+[deps]
+
+source_file="res://sounds/skeleton-sword.mp3"
+dest_files=[ "res://.import/skeleton-sword.mp3-63fe416a9b501cea4a3b8a7fe3b47b64.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

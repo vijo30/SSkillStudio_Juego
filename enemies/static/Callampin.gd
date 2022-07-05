@@ -55,6 +55,7 @@ func _set_health(value):
 			emit_signal("killed")
 
 func die():
+	$Sounds/death.play()
 	var item = Callampita.instance()
 	item.global_position = Vector2($SpawnBalallampa.global_position.x, $SpawnBalallampa.global_position.y)
 	get_parent().add_child(item)
@@ -89,4 +90,5 @@ func _on_delayTimer_timeout():
 	balallampa.global_position = $SpawnBalallampa.global_position
 	get_parent().add_child(balallampa)
 	balallampa.set_direction(direction)
+	$Sounds/attack.play()
 	balallampa.fire_to(Vector2($SpawnBalallampa.global_position.x, self.position.y))

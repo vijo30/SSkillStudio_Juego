@@ -55,16 +55,17 @@ func _set_health(value):
 			emit_signal("killed")
 
 func die():
-	$Sounds/death.play()
-	var item = Callampita.instance()
-	item.global_position = Vector2($SpawnBalallampa.global_position.x, $SpawnBalallampa.global_position.y)
-	get_parent().add_child(item)
-	item.fire_to(Vector2(item.global_position.x, item.position.y-4))
-	dead = true
-	$CallampinCollision.set_deferred("disabled",true)
-	$AttackRangeArea/AttackRange.set_deferred("disabled",true)
-	$CallampinBack.set_deferred("disabled",true)
-	$AnimatedCallampin.set_animation("death")
+	if not dead:
+		$Sounds/death.play()
+		var item = Callampita.instance()
+		item.global_position = Vector2($SpawnBalallampa.global_position.x, $SpawnBalallampa.global_position.y)
+		get_parent().add_child(item)
+		item.fire_to(Vector2(item.global_position.x, item.position.y-4))
+		dead = true
+		$CallampinCollision.set_deferred("disabled",true)
+		$AttackRangeArea/AttackRange.set_deferred("disabled",true)
+		$CallampinBack.set_deferred("disabled",true)
+		$AnimatedCallampin.set_animation("death")
 
 func _on_AttackRangeArea_body_entered(body):
 	if body.is_in_group("Player"):

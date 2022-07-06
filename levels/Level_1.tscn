@@ -37,8 +37,8 @@ position = Vector2( 570, 834 )
 position = Vector2( 686, 290 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1852, 204 )
-frame = 5
+position = Vector2( 1852, 205 )
+frame = 0
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -55,6 +55,12 @@ margin_bottom = 2.0
 
 [node name="TimeLeft" parent="Panel" index="1"]
 wait_time = 100.0
+
+[node name="Callampin2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 847, 302 )
+
+[node name="Callampin3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1228, 846 )
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

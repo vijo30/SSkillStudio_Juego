@@ -29,12 +29,12 @@ func pauseTimer():
 	timerStop = true
 
 func _on_TimeLeft_timeout():
-	$backTheme.volume_db = -12
+	$backTheme.volume_db = -30
 	$ProgressBar.pause()
 	$turutuTimer.start()
 
 func _on_Player_killed():
-	$backTheme.volume_db = -12
+	$backTheme.volume_db = -30
 	$ProgressBar.pause()
 	pauseTimer()
 	$turutuTimer.start()

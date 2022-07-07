@@ -22,6 +22,38 @@ position = Vector2( -1, -1 )
 [node name="Level_1_tile" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -1 )
 
+[node name="Node" type="Node2D" parent="Level_1_tile"]
+
+[node name="5" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 910, 202 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="1" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 353, 714 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+[node name="6" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 742, 714 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 1157, 520 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+
+[node name="8" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 499, 360 )
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 11 )
+
+[node name="9" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 1346, 873 )
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 11 )
+
 [node name="Callampin" parent="." instance=ExtResource( 8 )]
 use_parent_material = true
 position = Vector2( 144, 202 )
@@ -48,7 +80,7 @@ zoom = Vector2( 1.6, 1.8 )
 
 [node name="Spikes" parent="." instance=ExtResource( 3 )]
 collision_mask = 7
-tile_data = PoolIntArray( 131132, 3, 0, 196668, 3, 0, 262204, 3, 0, 458787, 0, 0, 458796, 1, 0, 524294, 1, 0, 524332, 1, 0, 589830, 1, 0, 589857, 3, 0, 589864, 3, 0, 589868, 1, 0, 655393, 3, 0, 655400, 3, 0, 655404, 1, 0, 720929, 3, 0, 720936, 3, 0, 720940, 1, 0, 786441, 3, 0, 786476, 1, 0, 851977, 3, 0, 851997, 1, 0, 852012, 1, 0, 917533, 1, 0, 983069, 1, 0, 1048582, 1, 0, 1048624, 2, 0, 1048625, 2, 0, 1114118, 1, 0, 1114163, 2, 0, 1114164, 2, 0, 1179681, 3, 0, 1179688, 3, 0, 1179706, 2, 0, 1179707, 2, 0, 1179708, 2, 0, 1245217, 3, 0, 1245224, 3, 0, 1310753, 3, 0, 1310760, 3, 0, 1376289, 3, 0, 1441848, 1, 0, 1507337, 3, 0, 1507384, 1, 0, 1572873, 3, 0, 1638409, 3, 0, 1769496, 0, 0, 1769497, 0, 0, 1769498, 0, 0, 1769499, 0, 0, 1835014, 1, 0, 1835020, 0, 0, 1835027, 0, 0, 1900550, 1, 0, 1966086, 1, 0, 2031622, 1, 0, 2228237, 0, 0, 2228238, 0, 0, 2228239, 0, 0, 2228240, 0, 0, 2228241, 0, 0, 2228242, 0, 0, 2228248, 0, 0, 2228249, 0, 0, 2228250, 0, 0, 2228251, 0, 0, 2228252, 0, 0, 2228253, 0, 0, 2228254, 0, 0, 2228255, 0, 0, 2228256, 0, 0, 2228257, 0, 0, 2228258, 0, 0, 2228259, 0, 0, 2228260, 0, 0, 2228261, 0, 0, 2228262, 0, 0, 2228263, 0, 0, 2228264, 0, 0, 2228265, 0, 0, 2228266, 0, 0, 2228267, 0, 0, 2228268, 0, 0, 2228269, 0, 0, 2228270, 0, 0, 2228271, 0, 0, 2228272, 0, 0, 2228273, 0, 0, 2228274, 0, 0, 2228275, 0, 0, 2228276, 0, 0, 2228277, 0, 0, 2228278, 0, 0, 2228279, 0, 0, 2228280, 0, 0, 2228281, 0, 0, 2228282, 0, 0, 2228283, 0, 0, 2228284, 0, 0 )
+tile_data = PoolIntArray( 131132, 3, 0, 196668, 3, 0, 262204, 3, 0, 458787, 0, 0, 458796, 1, 0, 524294, 1, 0, 524332, 1, 0, 589830, 1, 0, 589857, 3, 0, 589864, 3, 0, 589868, 1, 0, 655393, 3, 0, 655400, 3, 0, 655404, 1, 0, 720929, 3, 0, 720936, 3, 0, 720940, 1, 0, 786476, 1, 0, 851977, 3, 0, 851997, 1, 0, 852012, 1, 0, 917533, 1, 0, 983069, 1, 0, 1048624, 2, 0, 1048625, 2, 0, 1114118, 1, 0, 1114163, 2, 0, 1114164, 2, 0, 1179681, 3, 0, 1179688, 3, 0, 1179706, 2, 0, 1179707, 2, 0, 1179708, 2, 0, 1245217, 3, 0, 1245224, 3, 0, 1310753, 3, 0, 1310760, 3, 0, 1376289, 3, 0, 1441848, 1, 0, 1507337, 3, 0, 1507384, 1, 0, 1572873, 3, 0, 1638409, 3, 0, 1769496, 0, 0, 1769497, 0, 0, 1769498, 0, 0, 1769499, 0, 0, 1835014, 1, 0, 1835020, 0, 0, 1835027, 0, 0, 1900550, 1, 0, 1966086, 1, 0, 2031622, 1, 0, 2228237, 0, 0, 2228238, 0, 0, 2228239, 0, 0, 2228240, 0, 0, 2228241, 0, 0, 2228242, 0, 0, 2228248, 0, 0, 2228249, 0, 0, 2228250, 0, 0, 2228251, 0, 0, 2228252, 0, 0, 2228253, 0, 0, 2228254, 0, 0, 2228255, 0, 0, 2228256, 0, 0, 2228257, 0, 0, 2228258, 0, 0, 2228259, 0, 0, 2228260, 0, 0, 2228261, 0, 0, 2228262, 0, 0, 2228263, 0, 0, 2228264, 0, 0, 2228265, 0, 0, 2228266, 0, 0, 2228267, 0, 0, 2228268, 0, 0, 2228269, 0, 0, 2228270, 0, 0, 2228271, 0, 0, 2228272, 0, 0, 2228273, 0, 0, 2228274, 0, 0, 2228275, 0, 0, 2228276, 0, 0, 2228277, 0, 0, 2228278, 0, 0, 2228279, 0, 0, 2228280, 0, 0, 2228281, 0, 0, 2228282, 0, 0, 2228283, 0, 0, 2228284, 0, 0 )
 
 [node name="Skeleton2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 733, 292 )
@@ -58,7 +90,7 @@ position = Vector2( 233, 1076 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1705, 133 )
-frame = 7
+frame = 4
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -91,38 +123,6 @@ position = Vector2( 1648, 1162 )
 position = Vector2( -1140, -53.0001 )
 scale = Vector2( 0.1, 0.75 )
 shape = SubResource( 22 )
-
-[node name="Node" type="Node" parent="."]
-
-[node name="5" type="Sprite" parent="Node"]
-position = Vector2( 910, 202 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 12 )
-
-[node name="1" type="Sprite" parent="Node"]
-position = Vector2( 353, 714 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
-
-[node name="6" type="Sprite" parent="Node"]
-position = Vector2( 742, 714 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 12 )
-
-[node name="3" type="Sprite" parent="Node"]
-position = Vector2( 1157, 520 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
-
-[node name="8" type="Sprite" parent="Node"]
-position = Vector2( 499, 360 )
-scale = Vector2( 2.5, 2 )
-texture = ExtResource( 11 )
-
-[node name="9" type="Sprite" parent="Node"]
-position = Vector2( 1346, 873 )
-scale = Vector2( 2.5, 2 )
-texture = ExtResource( 11 )
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

@@ -69,6 +69,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Panel" type="Panel"]
+light_mask = 512
 margin_left = -8.0
 margin_top = -80.0
 margin_right = 2063.0
@@ -176,8 +177,9 @@ one_shot = true
 wait_time = 3.5
 one_shot = true
 
-[node name="backTheme" type="AudioStreamPlayer2D" parent="."]
+[node name="backTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -20.0
 autoplay = true
 
 [connection signal="timeout" from="TimeLeft" to="." method="_on_TimeLeft_timeout"]

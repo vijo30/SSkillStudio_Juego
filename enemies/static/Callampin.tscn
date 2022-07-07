@@ -30,6 +30,26 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 450, 0, 150, 150 )
 
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 450, 0, 150, 150 )
+
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 3 )
@@ -75,26 +95,6 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 1200, 0, 150, 150 )
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 450, 0, 150, 150 )
-
 [sub_resource type="SpriteFrames" id=19]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
@@ -102,19 +102,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "death",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "attack",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 132.5, 21 )
+extents = Vector2( 133.25, 21 )
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 18, 23 )
@@ -168,13 +168,13 @@ position = Vector2( 24, 5 )
 
 [node name="Sounds" type="Node" parent="."]
 
-[node name="attack" type="AudioStreamPlayer2D" parent="Sounds"]
-scale = Vector2( 2, 2 )
+[node name="attack" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 5 )
+volume_db = -10.0
 
-[node name="death" type="AudioStreamPlayer2D" parent="Sounds"]
-scale = Vector2( 2, 2 )
+[node name="death" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 6 )
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimatedCallampin" to="." method="_on_AnimatedCallampin_animation_finished"]
 [connection signal="timeout" from="attackTimer" to="." method="_on_attackTimer_timeout"]

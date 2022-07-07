@@ -39,7 +39,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Credits line"
 align = 1
 
-[node name="credits" type="AudioStreamPlayer2D" parent="."]
+[node name="credits" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -5.0
+volume_db = -15.0
 autoplay = true

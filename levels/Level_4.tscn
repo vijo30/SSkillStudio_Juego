@@ -1,0 +1,535 @@
+[gd_scene load_steps=60 format=2]
+
+[ext_resource path="res://levels/level_tiles/Level_4_tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/static/Spikes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HUD/Pause.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/level_switcher/Next_level.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD/Panel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Willows/3.png" type="Texture" id=7]
+[ext_resource path="res://enemies/static/Callampin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Pointers/1.png" type="Texture" id=9]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Pointers/3.png" type="Texture" id=10]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Pointers/8.png" type="Texture" id=11]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Pointers/5.png" type="Texture" id=12]
+[ext_resource path="res://assets/boss_demon_slime_FREE_v1.0/spritesheets/demon_slime_FREE_v1.0_288x160_spritesheet.png" type="Texture" id=13]
+[ext_resource path="res://levels/Demon.gd" type="Script" id=14]
+[ext_resource path="res://assets/items/Boar.png" type="Texture" id=15]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/3.png" type="Texture" id=16]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/10.png" type="Texture" id=17]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/1.png" type="Texture" id=18]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/2.png" type="Texture" id=19]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/5.png" type="Texture" id=20]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Ridges/3.png" type="Texture" id=21]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Grass/8.png" type="Texture" id=22]
+[ext_resource path="res://assets/free-swamp-game-tileset-pixel-art/3 Objects/Stones/2.png" type="Texture" id=23]
+[ext_resource path="res://sounds/Dieing Beast.wav" type="AudioStream" id=24]
+[ext_resource path="res://sounds/winfretless.ogg" type="AudioStream" id=25]
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 41.5, 45.5 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 288, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 576, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 864, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1152, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=50]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1440, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=51]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1728, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=52]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2016, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=53]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2304, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=54]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2592, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=55]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2880, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=56]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3168, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=57]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3456, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=58]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3744, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=59]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4032, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=60]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4320, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=61]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4608, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=62]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4896, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=63]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 5184, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 5472, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 5760, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 6048, 640, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 576, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 864, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1152, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1440, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 1728, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2592, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2880, 160, 288, 160 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 3168, 160, 288, 160 )
+
+[sub_resource type="SpriteFrames" id=36]
+animations = [ {
+"frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"loop": false,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=67]
+extents = Vector2( 25.5, 26.75 )
+
+[sub_resource type="RectangleShape2D" id=68]
+extents = Vector2( 309, 40 )
+
+[node name="Level_4" type="Node2D"]
+position = Vector2( -1, -1 )
+
+[node name="Level4Tile" parent="." instance=ExtResource( 1 )]
+
+[node name="3" type="Sprite" parent="Level4Tile"]
+position = Vector2( 1460, 631 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="4" type="Sprite" parent="Level4Tile"]
+position = Vector2( 585, 631 )
+rotation = 3.14159
+scale = Vector2( 1.5, -1.5 )
+texture = ExtResource( 7 )
+
+[node name="spriteslevel5" type="Node2D" parent="Level4Tile"]
+
+[node name="4" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1025, 741 )
+scale = Vector2( 1.20642, 1.37805 )
+texture = ExtResource( 21 )
+
+[node name="3" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1092, 753 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+
+[node name="2" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1025, 580 )
+texture = ExtResource( 23 )
+
+[node name="10" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1035, 760 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 17 )
+
+[node name="1" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 943, 751 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
+
+[node name="8" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1119, 755 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+
+[node name="11" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1015, 760 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 17 )
+
+[node name="5" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 911, 752 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+
+[node name="6" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 1136, 759 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 20 )
+
+[node name="7" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 438, 753 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 19 )
+
+[node name="9" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 593, 752 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
+
+[node name="12" type="Sprite" parent="Level4Tile/spriteslevel5"]
+position = Vector2( 477, 751 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
+
+[node name="1" type="Sprite" parent="Level4Tile/spriteslevel5/12"]
+position = Vector2( 477, 0 )
+texture = ExtResource( 18 )
+
+[node name="2" type="Sprite" parent="Level4Tile/spriteslevel5/12"]
+position = Vector2( 536.5, 1 )
+texture = ExtResource( 19 )
+
+[node name="3" type="Sprite" parent="Level4Tile/spriteslevel5/12"]
+position = Vector2( 553.5, 1 )
+texture = ExtResource( 16 )
+
+[node name="Callampines" type="Node2D" parent="."]
+
+[node name="Callampin" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 921, 874 )
+
+[node name="AttackRange" parent="Callampines/Callampin/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 190.5, 8.5 )
+scale = Vector2( 1.25, 2.5 )
+
+[node name="Callampin3" parent="Callampines" instance=ExtResource( 8 )]
+position = Vector2( 1112, 875 )
+
+[node name="CallampinBack" parent="Callampines/Callampin3" index="3"]
+scale = Vector2( 1.5, 5 )
+
+[node name="AttackRange" parent="Callampines/Callampin3/AttackRangeArea" index="0"]
+position = Vector2( 323, 8 )
+scale = Vector2( 2.25, 1 )
+
+[node name="Callampin2" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 136, 683 )
+
+[node name="AttackRange" parent="Callampines/Callampin2/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 190.5, 8.5 )
+scale = Vector2( 1.25, 5 )
+
+[node name="Callampin4" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 136, 523 )
+
+[node name="AttackRange" parent="Callampines/Callampin4/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 229.5, 10.5 )
+scale = Vector2( 1.5, 8 )
+
+[node name="Callampin5" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 139, 235 )
+
+[node name="AttackRange" parent="Callampines/Callampin5/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 221.5, 15.5 )
+scale = Vector2( 1.5, 4 )
+
+[node name="Callampin6" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 1911, 236 )
+
+[node name="AttackRange" parent="Callampines/Callampin6/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 194, 76 )
+scale = Vector2( 1.25, 5 )
+
+[node name="Callampin7" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 1911, 524 )
+
+[node name="AttackRange" parent="Callampines/Callampin7/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 193, 14.5 )
+scale = Vector2( 1.25, 8 )
+
+[node name="Callampin8" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 1914, 683 )
+
+[node name="AttackRange" parent="Callampines/Callampin8/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 192.5, -5 )
+scale = Vector2( 1.25, 6 )
+
+[node name="Callampin9" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 1912, 875 )
+
+[node name="AttackRange" parent="Callampines/Callampin9/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 190.5, 8.5 )
+scale = Vector2( 1.25, 2.5 )
+
+[node name="Callampin10" parent="Callampines" instance=ExtResource( 8 )]
+use_parent_material = true
+position = Vector2( 136, 877 )
+
+[node name="AttackRange" parent="Callampines/Callampin10/AttackRangeArea" index="0"]
+use_parent_material = true
+position = Vector2( 200.5, -51 )
+scale = Vector2( 1.25, 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 1026, 571 )
+current = true
+zoom = Vector2( 1.6, 1.8 )
+
+[node name="Spikes" parent="." instance=ExtResource( 3 )]
+collision_mask = 7
+tile_data = PoolIntArray( 786438, 1, 0, 786489, 3, 0, 1179654, 1, 0, 1179705, 3, 0, 1245190, 1, 0, 1245241, 3, 0, 1507334, 1, 0, 1507385, 3, 0, 1572870, 1, 0, 1572874, 3, 0, 1572886, 1, 0, 1572905, 3, 0, 1572917, 1, 0, 1572921, 3, 0, 1638406, 1, 0, 1638457, 3, 0, 1900550, 1, 0, 1900601, 3, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1028, 1083 )
+
+[node name="Next_level" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 1705, 133 )
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="5" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 910, 202 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="1" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 353, 714 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+[node name="6" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 742, 714 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 1157, 520 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+
+[node name="8" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 499, 360 )
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 11 )
+
+[node name="9" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 1346, 873 )
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 11 )
+
+[node name="DemonArea" type="Area2D" parent="."]
+position = Vector2( 1083, 110 )
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DemonArea"]
+position = Vector2( 31.5, 35.5 )
+shape = SubResource( 23 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DemonArea"]
+position = Vector2( 35, 2 )
+frames = SubResource( 36 )
+animation = "walk"
+frame = 5
+playing = true
+
+[node name="switchDirection" type="Timer" parent="DemonArea"]
+wait_time = 3.0
+autostart = true
+
+[node name="Drop" type="Area2D" parent="DemonArea"]
+visible = false
+position = Vector2( 186, 17 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="DropArea" type="CollisionShape2D" parent="DemonArea/Drop"]
+position = Vector2( -151, 21 )
+shape = SubResource( 67 )
+
+[node name="Sprite" type="Sprite" parent="DemonArea/Drop"]
+position = Vector2( -150, 23 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 15 )
+
+[node name="Drop2" type="Timer" parent="DemonArea"]
+wait_time = 5.0
+one_shot = true
+
+[node name="takeDrop" type="Timer" parent="DemonArea"]
+wait_time = 4.0
+one_shot = true
+
+[node name="death" type="AudioStreamPlayer" parent="DemonArea"]
+stream = ExtResource( 24 )
+
+[node name="deathTimer" type="Timer" parent="DemonArea"]
+one_shot = true
+
+[node name="win" type="AudioStreamPlayer" parent="DemonArea"]
+stream = ExtResource( 25 )
+
+[node name="AREAFINAL" type="Area2D" parent="."]
+position = Vector2( 1083, 110 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AREAFINAL"]
+position = Vector2( -63, 58 )
+shape = SubResource( 68 )
+
+[node name="PauseBox" parent="." instance=ExtResource( 4 )]
+visible = false
+margin_left = 880.0
+margin_top = 426.0
+margin_right = 1267.0
+margin_bottom = 870.0
+
+[node name="Panel" parent="." instance=ExtResource( 6 )]
+margin_left = 1.0
+margin_top = -82.0
+margin_right = 2056.0
+margin_bottom = 2.0
+
+[node name="TimeLeft" parent="Panel" index="1"]
+wait_time = 100.0
+
+[connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
+[connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]
+[connection signal="area_entered" from="DemonArea" to="DemonArea" method="_on_DemonArea_area_entered"]
+[connection signal="timeout" from="DemonArea/switchDirection" to="DemonArea" method="_on_switchDirection_timeout"]
+[connection signal="area_entered" from="DemonArea/Drop" to="DemonArea" method="_on_Drop_area_entered"]
+[connection signal="timeout" from="DemonArea/Drop2" to="DemonArea" method="_on_Drop2_timeout"]
+[connection signal="timeout" from="DemonArea/takeDrop" to="DemonArea" method="_on_takeDrop_timeout"]
+[connection signal="timeout" from="DemonArea/deathTimer" to="DemonArea" method="_on_deathTimer_timeout"]
+[connection signal="body_entered" from="AREAFINAL" to="DemonArea" method="_on_AREAFINAL_body_entered"]
+
+[editable path="Callampines/Callampin"]
+[editable path="Callampines/Callampin3"]
+[editable path="Callampines/Callampin2"]
+[editable path="Callampines/Callampin4"]
+[editable path="Callampines/Callampin5"]
+[editable path="Callampines/Callampin6"]
+[editable path="Callampines/Callampin7"]
+[editable path="Callampines/Callampin8"]
+[editable path="Callampines/Callampin9"]
+[editable path="Callampines/Callampin10"]
+[editable path="Panel"]

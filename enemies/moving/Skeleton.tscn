@@ -233,11 +233,13 @@ shape = SubResource( 28 )
 
 [node name="Sounds" type="Node" parent="."]
 
-[node name="attack" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="attack" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 8 )
+volume_db = -15.0
 
-[node name="death" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="death" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 7 )
+volume_db = -15.0
 
 [node name="SkeletonEyes" type="RayCast2D" parent="."]
 position = Vector2( 16.5, -15 )

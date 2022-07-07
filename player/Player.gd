@@ -36,6 +36,7 @@ onready var next_level = get_tree().get_root().get_node("Level_"+ str(int(get_tr
 var actualMushroom
 var mushroomSound
 
+
 # Damaged var
 var damaged = false
 onready var dtimer = get_node("dmgTimer")
@@ -124,10 +125,11 @@ func _physics_process(delta):
 			timer.start()
 			canIAttack = false
 			attacking = true
-			
 			$AnimationTree.set("parameters/movement/current",2)
 	
-		if attacking: $AttackDetector/CollisionShape2D.disabled = false	
+		if attacking: 
+	
+			$AttackDetector/CollisionShape2D.disabled = false	
 		if not attacking: $AttackDetector/CollisionShape2D.disabled = true
 		
 		if (not climb) and (not grounded) and (not attacking): $AnimationTree.set("parameters/in_air_state/current",1)
@@ -210,3 +212,5 @@ func _on_eatTimer_timeout():
 		self.position.x = Manager.teleportPlace[Manager.actualLevel][0]
 		self.position.y = Manager.teleportPlace[Manager.actualLevel][1]
 	get_node(mushroomSound).play()
+
+

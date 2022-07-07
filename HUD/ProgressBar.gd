@@ -10,6 +10,6 @@ func pause():
 
 func _process(delta):
 	if not stopped:
-		self.value += 5*delta #cambiarlo 
+		self.value += 10*delta #cambiarlo 
 		if Input.is_action_just_pressed("attack") and self.value >= 99.9:
 			self.value = 0

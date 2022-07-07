@@ -19,7 +19,7 @@ position = Vector2( 0, -1 )
 position = Vector2( 962, 842 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 955, 431 )
+position = Vector2( 129, 1112 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1026, 571 )
@@ -38,7 +38,7 @@ position = Vector2( 686, 290 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1852, 205 )
-frame = 0
+frame = 1
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -57,7 +57,7 @@ margin_bottom = 2.0
 wait_time = 100.0
 
 [node name="Callampin2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 847, 302 )
+position = Vector2( 867, 297 )
 
 [node name="Callampin3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1228, 846 )

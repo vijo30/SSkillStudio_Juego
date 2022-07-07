@@ -12,8 +12,11 @@ func _ready() -> void:
 	actualMushroom = str((randi()%3) +1)
 	
 func _physics_process(delta: float) -> void:
-	linear_vel += Vector2.DOWN * SPEED *  delta
-	position += linear_vel * delta
+	if is_on_ceiling():
+		linear_vel = Vector2.ZERO
+	if not is_on_floor():
+		linear_vel += Vector2.DOWN * SPEED *  delta
+	move_and_slide(linear_vel, Vector2.UP)
 
 func getMushroom():
 	return actualMushroom
@@ -27,10 +30,6 @@ func set_direction(value):
 	direction = value
 
 func _on_Area2D_body_entered(body):
-	if body is TileMap:
-		linear_vel = Vector2.ZERO
-		rotation = 0
-		SPEED = 0
-	if body.is_in_group("Player") and SPEED == 0:
+	if body.is_in_group("Player") and is_on_floor():
 		body.consumeMushroom(actualMushroom)
 		queue_free()

@@ -1,6 +1,9 @@
 extends Control
 
 func _ready():
+	Manager.actualHealth = 100
+	Manager.pizzas = 3
+	Manager.actualLevel = 0
 	$GameMenu/StartButton.grab_focus()
 
 func _on_StartButton_pressed():

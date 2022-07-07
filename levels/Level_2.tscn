@@ -37,6 +37,7 @@ tile_data = PoolIntArray( 393225, 1, 0, 458761, 1, 0, 917507, 3, 0, 917526, 1, 0
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1995, 1130 )
+frame = 7
 
 [node name="KillerArea" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1106, 1373 )

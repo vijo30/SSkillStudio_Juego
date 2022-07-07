@@ -33,13 +33,20 @@ var credits = [
 		"Spikes by Omniclause",
 		"Free Swamp 2D Tileset Pixel Art by 'Free and Premium Game Assets (GUI, Sprite, Tilesets)'",
 		"m5x7 font by Daniel Linssen",
-		"2D Pixel Art Portal Sprites by Elthen's Pixel Art Shop"
+		"2D Pixel Art Portal Sprites by Elthen's Pixel Art Shop",
+		"16x16 Fantasy Mushroom Pack by ssugmi",
+		"Free Pixel foods by ghostpixxells"
 	],[
 		"Music",
-		"None"
+		"Swamp 01 by Fantasy Musica (Back Theme)",
+		"DOS-88 Synthwave Music Library by DOS88 (Credits Theme)"
 	],[
 		"Sound Effects",
-		"None"
+		"Generic Male Voice Pack by The Danicon Show",
+		"Monster Sounds Volume 2 by Ogrebane",
+		"41 Short, Loopable Background Music Files by joshuuu",
+		"QuickSounds.com",
+		"Sound Effects Pack 2 by phoenix1291"
 	],[
 		"Testers",
 		"Valentina Rojas",

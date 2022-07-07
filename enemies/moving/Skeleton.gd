@@ -50,7 +50,7 @@ func move_character():
 
 
 func detect_turn_around():
-	if not $RayCast2D.is_colliding() and is_on_floor():
+	if not $RayCast2D.is_colliding() or $SkeletonEyes.is_colliding() or $SkeletonFeet.is_colliding() and is_on_floor() :
 		is_moving_left = not is_moving_left
 		scale.x = -scale.x
 
@@ -82,23 +82,16 @@ func _set_health(value):
 
 
 func _on_PlayerDetector_area_entered(area):
-	attacking = true
-	atkTimer.start()
+	if area.is_in_group("player"):
+		attacking = true
+		atkTimer.start()
 	
-	
-
-
-func _on_AttackDetector_area_entered(area):
-	pass
-	
-
-
-
 
 
 func _on_PlayerDetector_area_exited(area):
-	attacking = false
-	atkTimer.stop()
+	if area.is_in_group("player"):
+		attacking = false
+		atkTimer.stop()
 	
 
 
@@ -106,11 +99,6 @@ func _on_AttackTimer_timeout():
 	$AttackDetector/CollisionShape2D.disabled = false
 	$Sounds/attack.play()
 	print("On")
-
-func _on_AttackDetector_area_exited(area):
-	pass
-	
-
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("sword"):

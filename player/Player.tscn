@@ -236,7 +236,7 @@ nodes/movement/position = Vector2( 640, 120 )
 nodes/on_wall/node = SubResource( 25 )
 nodes/on_wall/position = Vector2( 720, 480 )
 nodes/output/position = Vector2( 1160, 40 )
-node_connections = [ "output", 0, "in_air_state", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5" ]
+node_connections = [ "output", 0, "in_air_state", "on_wall", 0, "Animation 6", "on_wall", 1, "Animation 4", "in_air_state", 0, "movement", "in_air_state", 1, "Animation 3", "in_air_state", 2, "on_wall", "in_air_state", 3, "is_damaged", "movement", 0, "Animation", "movement", 1, "Animation 2", "movement", 2, "Animation 5", "is_damaged", 0, "Animation 7", "is_damaged", 1, "Animation 8" ]
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 26, 41.7188 )
@@ -290,7 +290,7 @@ parameters/on_wall/current = 0
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="CollisionArea" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 position = Vector2( 0, -3 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level_tiles/Level_1_tile.tscn" type="PackedScene" id=2]
@@ -8,127 +8,6 @@
 [ext_resource path="res://HUD/Panel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enemies/moving/Skeleton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemies/static/Callampin.tscn" type="PackedScene" id=8]
-[ext_resource path="res://enemies/static/Callampin.gd" type="Script" id=9]
-[ext_resource path="res://sounds/callampin-death.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Attack3.png" type="Texture" id=11]
-[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Idle.png" type="Texture" id=12]
-[ext_resource path="res://sounds/balallampa.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/Monsters_Creatures_Fantasy/Mushroom/Death.png" type="Texture" id=14]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 21 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 450, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 450, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 600, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 750, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 900, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 1050, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 1200, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 450, 0, 150, 150 )
-
-[sub_resource type="SpriteFrames" id=19]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": false,
-"name": "death",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 132.5, 21 )
-
-[sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 18, 23 )
-
-[sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 1082.06, 31.25 )
 
 [node name="Level_1" type="Node2D"]
 position = Vector2( -1, -1 )
@@ -137,90 +16,10 @@ position = Vector2( -1, -1 )
 position = Vector2( 0, -1 )
 
 [node name="Callampin" parent="." instance=ExtResource( 8 )]
-use_parent_material = true
-position = Vector2( 144, 202 )
+position = Vector2( 962, 842 )
 
-<<<<<<< Updated upstream
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 129, 1112 )
-=======
-[node name="AttackRange" parent="Callampin/AttackRangeArea" index="0"]
-use_parent_material = true
-position = Vector2( 190.5, 8.5 )
-scale = Vector2( 1.25, 2.5 )
-
-[node name="Callampin3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1553, 843 )
-
-[node name="CallampinBack" parent="Callampin3" index="3"]
-scale = Vector2( 1.5, 5 )
-
-[node name="AttackRange" parent="Callampin3/AttackRangeArea" index="0"]
-position = Vector2( 323, 8 )
-scale = Vector2( 2.25, 1 )
-
-[node name="Callampin4" type="KinematicBody2D" parent="." groups=["enemies"]]
-use_parent_material = true
-position = Vector2( 1650, 556 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 9 )
-
-[node name="CallampinCollision" type="CollisionShape2D" parent="Callampin4"]
-position = Vector2( 0, 8 )
-shape = SubResource( 1 )
-
-[node name="AnimatedCallampin" type="AnimatedSprite" parent="Callampin4"]
-frames = SubResource( 19 )
-animation = "attack"
-frame = 8
-playing = true
-
-[node name="attackTimer" type="Timer" parent="Callampin4"]
-wait_time = 2.0
-one_shot = true
-
-[node name="CallampinBack" type="RayCast2D" parent="Callampin4"]
-position = Vector2( 0, 9 )
-scale = Vector2( 0.55, 5 )
-enabled = true
-cast_to = Vector2( -300, 0 )
-collision_mask = 3
-
-[node name="AttackRangeArea" type="Area2D" parent="Callampin4"]
-position = Vector2( -1, 0 )
-
-[node name="AttackRange" type="CollisionShape2D" parent="Callampin4/AttackRangeArea"]
-use_parent_material = true
-position = Vector2( 88, 29.5 )
-scale = Vector2( 0.5, 3 )
-shape = SubResource( 20 )
-
-[node name="Hitbox" type="Area2D" parent="Callampin4"]
-
-[node name="HitboxCollision" type="CollisionShape2D" parent="Callampin4/Hitbox"]
-position = Vector2( 0, 8.4 )
-shape = SubResource( 21 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="delayTimer" type="Timer" parent="Callampin4"]
-wait_time = 1.5
-one_shot = true
-
-[node name="SpawnBalallampa" type="Position2D" parent="Callampin4"]
-position = Vector2( 24, 5 )
-
-[node name="Sounds" type="Node" parent="Callampin4"]
-
-[node name="attack" type="AudioStreamPlayer2D" parent="Callampin4/Sounds"]
-scale = Vector2( 2, 2 )
-stream = ExtResource( 13 )
-
-[node name="death" type="AudioStreamPlayer2D" parent="Callampin4/Sounds"]
-scale = Vector2( 2, 2 )
-stream = ExtResource( 10 )
->>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 1026, 571 )
@@ -229,25 +28,17 @@ zoom = Vector2( 1.6, 1.8 )
 
 [node name="Spikes" parent="." instance=ExtResource( 3 )]
 collision_mask = 7
-tile_data = PoolIntArray( 458787, 0, 0, 524294, 1, 0, 589857, 3, 0, 589864, 3, 0, 655393, 3, 0, 655400, 3, 0, 720929, 3, 0, 720936, 3, 0, 786441, 3, 0, 851997, 1, 0, 852012, 1, 0, 852025, 1, 0, 917533, 1, 0, 917548, 1, 0, 917561, 1, 0, 983069, 1, 0, 983084, 1, 0, 983097, 1, 0, 1048582, 1, 0, 1114118, 1, 0, 1179681, 3, 0, 1179688, 3, 0, 1245217, 3, 0, 1245224, 3, 0, 1310753, 3, 0, 1310760, 3, 0, 1376289, 3, 0, 1507337, 3, 0, 1572873, 3, 0, 1638409, 3, 0, 1769496, 0, 0, 1769497, 0, 0, 1769498, 0, 0, 1769499, 0, 0, 1835020, 0, 0, 1835027, 0, 0, 1900550, 1, 0, 1966086, 1, 0, 2031622, 1, 0, 2228237, 0, 0, 2228238, 0, 0, 2228241, 0, 0, 2228242, 0, 0, 2228248, 0, 0, 2228249, 0, 0, 2228250, 0, 0, 2228251, 0, 0, 2228252, 0, 0, 2228253, 0, 0, 2228254, 0, 0, 2228255, 0, 0, 2228256, 0, 0, 2228257, 0, 0, 2228258, 0, 0, 2228259, 0, 0, 2228260, 0, 0, 2228261, 0, 0, 2228262, 0, 0, 2228263, 0, 0, 2228264, 0, 0, 2228265, 0, 0, 2228266, 0, 0, 2228267, 0, 0, 2228268, 0, 0, 2228269, 0, 0, 2228270, 0, 0, 2228271, 0, 0, 2228272, 0, 0, 2228273, 0, 0, 2228274, 0, 0, 2228275, 0, 0, 2228276, 0, 0, 2228277, 0, 0, 2228278, 0, 0, 2228279, 0, 0, 2228280, 0, 0, 2228281, 0, 0, 2228282, 0, 0, 2228283, 0, 0, 2228284, 0, 0 )
+tile_data = PoolIntArray( 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 589862, 1, 0, 589870, 1, 0, 655398, 1, 0, 655406, 1, 0, 655419, 2, 0, 655420, 2, 0, 720898, 1, 0, 720934, 1, 0, 720942, 1, 0, 720954, 1, 0, 720957, 3, 0, 786434, 1, 0, 786470, 1, 0, 786478, 1, 0, 786490, 1, 0, 786493, 3, 0, 851970, 1, 0, 852014, 1, 0, 852026, 1, 0, 852029, 3, 0, 917562, 1, 0, 917565, 3, 0, 983099, 0, 0, 983100, 0, 0, 1048626, 3, 0, 1114162, 3, 0, 1179653, 3, 0, 1179691, 3, 0, 1179698, 3, 0, 1245227, 3, 0, 1245234, 3, 0, 1310763, 3, 0, 1310770, 3, 0, 1376258, 1, 0, 1376299, 3, 0, 1441794, 1, 0, 1507330, 1, 0, 1572866, 1, 0, 1638402, 1, 0, 2097163, 3, 0, 2162699, 3, 0, 2228235, 3, 0, 2293771, 3, 0, 2293774, 0, 0, 2293775, 0, 0, 2293776, 0, 0, 2293777, 0, 0, 2293778, 0, 0, 2293779, 0, 0, 2293780, 0, 0, 2293781, 0, 0, 2293782, 0, 0, 2293783, 0, 0, 2293784, 0, 0, 2293785, 0, 0, 2293786, 0, 0, 2293787, 0, 0, 2293788, 0, 0, 2293789, 0, 0, 2293790, 0, 0, 2293791, 0, 0, 2293792, 0, 0, 2293793, 0, 0, 2293794, 0, 0, 2293795, 0, 0, 2293796, 0, 0, 2293797, 0, 0, 2293798, 0, 0, 2293799, 0, 0, 2293800, 0, 0, 2293801, 0, 0, 2293802, 0, 0, 2293803, 0, 0, 2293804, 0, 0, 2293805, 0, 0, 2293806, 0, 0, 2293807, 0, 0, 2293808, 0, 0, 2293809, 0, 0, 2293810, 0, 0, 2293811, 0, 0, 2293812, 0, 0, 2293813, 0, 0, 2293814, 0, 0, 2293815, 0, 0, 2293816, 0, 0, 2293817, 0, 0, 2293818, 0, 0, 2293819, 0, 0, 2293820, 0, 0, 2293821, 0, 0 )
 
 [node name="Skeleton" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1729, 352 )
+position = Vector2( 570, 834 )
 
 [node name="Skeleton2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 733, 292 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 263, 1080 )
+position = Vector2( 686, 290 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
-<<<<<<< Updated upstream
 position = Vector2( 1852, 205 )
 frame = 1
-=======
-position = Vector2( 1942, 125 )
-frame = 5
->>>>>>> Stashed changes
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -265,28 +56,13 @@ margin_bottom = 2.0
 [node name="TimeLeft" parent="Panel" index="1"]
 wait_time = 100.0
 
-<<<<<<< Updated upstream
 [node name="Callampin2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 867, 297 )
-=======
-[node name="KillerArea" type="Area2D" parent="." groups=["killerArea"]]
-position = Vector2( 1648, 1162 )
->>>>>>> Stashed changes
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillerArea"]
-position = Vector2( -287, -59 )
-scale = Vector2( 0.55, 0.75 )
-shape = SubResource( 22 )
+[node name="Callampin3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1228, 846 )
 
-[connection signal="animation_finished" from="Callampin4/AnimatedCallampin" to="Callampin4" method="_on_AnimatedCallampin_animation_finished"]
-[connection signal="timeout" from="Callampin4/attackTimer" to="Callampin4" method="_on_attackTimer_timeout"]
-[connection signal="body_entered" from="Callampin4/AttackRangeArea" to="Callampin4" method="_on_AttackRangeArea_body_entered"]
-[connection signal="body_exited" from="Callampin4/AttackRangeArea" to="Callampin4" method="_on_AttackRangeArea_body_exited"]
-[connection signal="area_entered" from="Callampin4/Hitbox" to="Callampin4" method="_on_Hitbox_area_entered"]
-[connection signal="timeout" from="Callampin4/delayTimer" to="Callampin4" method="_on_delayTimer_timeout"]
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]
 
-[editable path="Callampin"]
-[editable path="Callampin3"]
 [editable path="Panel"]

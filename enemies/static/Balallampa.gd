@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed = 200
-var SPEED = 300
+var SPEED = 200
 var linear_vel = Vector2.ZERO
 var direction = 1
 func _ready() -> void:

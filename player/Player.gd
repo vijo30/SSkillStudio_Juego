@@ -108,7 +108,13 @@ func _physics_process(delta):
 		# move upwards or downwards on walls
 		if Input.is_action_pressed("move_up") and (climb): velocity.y -= move_speed
 		if Input.is_action_pressed("move_down") and (climb): velocity.y += move_speed
-
+		if Input.is_action_pressed("teleport"):
+			if Manager.actualLevel == 1:
+				position.x = 1867
+				position.y = 994
+			if Manager.actualLevel == 2:
+				position.x = 1400
+				position.y = 533
 		# actually move the player
 		if actualMushroom != null: velocity = Vector2.ZERO
 		velocity = move_and_slide(velocity, Vector2.UP)

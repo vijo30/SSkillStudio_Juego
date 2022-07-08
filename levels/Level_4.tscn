@@ -398,6 +398,7 @@ position = Vector2( 1028, 1083 )
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 1705, 133 )
+frame = 1
 
 [node name="Sprites" type="Node" parent="."]
 
@@ -449,7 +450,6 @@ shape = SubResource( 23 )
 position = Vector2( 35, 2 )
 frames = SubResource( 36 )
 animation = "walk"
-frame = 1
 playing = true
 
 [node name="switchDirection" type="Timer" parent="DemonArea"]
@@ -510,7 +510,7 @@ margin_right = 2056.0
 margin_bottom = 2.0
 
 [node name="TimeLeft" parent="Panel" index="1"]
-wait_time = 100.0
+wait_time = 60.0
 
 [connection signal="health_updated" from="Player" to="Panel/HealthBar" method="_on_Player_health_updated"]
 [connection signal="killed" from="Player" to="Panel" method="_on_Player_killed"]

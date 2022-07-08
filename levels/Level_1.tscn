@@ -95,6 +95,7 @@ position = Vector2( 233, 1076 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1705, 133 )
+frame = 0
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -110,7 +111,7 @@ margin_right = 2056.0
 margin_bottom = 2.0
 
 [node name="TimeLeft" parent="Panel" index="1"]
-wait_time = 100.0
+wait_time = 60.0
 
 [node name="KillerArea" type="Area2D" parent="." groups=["killerArea"]]
 position = Vector2( 1648, 1162 )

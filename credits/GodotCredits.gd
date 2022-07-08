@@ -35,7 +35,8 @@ var credits = [
 		"m5x7 font by Daniel Linssen",
 		"2D Pixel Art Portal Sprites by Elthen's Pixel Art Shop",
 		"16x16 Fantasy Mushroom Pack by ssugmi",
-		"Free Pixel foods by ghostpixxells"
+		"Free Pixel foods by ghostpixxells",
+		"Free Pixel Food by Henry Software"
 	],[
 		"Music",
 		"Swamp 01 by Fantasy Musica (Back Theme)",
@@ -46,7 +47,9 @@ var credits = [
 		"Monster Sounds Volume 2 by Ogrebane",
 		"41 Short, Loopable Background Music Files by joshuuu",
 		"QuickSounds.com",
-		"Sound Effects Pack 2 by phoenix1291"
+		"Sound Effects Pack 2 by phoenix1291",
+		"Win Jingle by Fupi",
+		"20 Sword Sound Effects (Attacks and Clashes) by StarNinjas"
 	],[
 		"Testers",
 		"Valentina Rojas",
@@ -65,10 +68,10 @@ var credits = [
 		"",
 		"Mario por botar el ramo RIP",
 		"Milwer q me ayudó mucho y lo quiero mucho",
-		"Melanie Jalea por ser mi amiga",
+		"Melanie Jalea por apoyarme y la quiero mucho",
 		"Mi familia q lxs quiero mucho",
 		"Damian por su buena disposición xD",
-		"Elías por dejarme presentar online"
+		"Elías por dejarme presentar online uwu"
 	]
 ]
 

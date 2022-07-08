@@ -449,7 +449,7 @@ shape = SubResource( 23 )
 position = Vector2( 35, 2 )
 frames = SubResource( 36 )
 animation = "walk"
-frame = 5
+frame = 1
 playing = true
 
 [node name="switchDirection" type="Timer" parent="DemonArea"]

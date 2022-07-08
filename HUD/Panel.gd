@@ -22,7 +22,6 @@ func _on_Button_pressed():
 	# get_tree().paused = false
 	Manager.pizzas -= 1
 	Manager.actualHealth = 100
-	$backTheme.volume_db = 0
 	get_tree().reload_current_scene()
 
 func pauseTimer():

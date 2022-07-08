@@ -50,7 +50,9 @@ var credits = [
 	],[
 		"Testers",
 		"Valentina Rojas",
-		"José Videla A."
+		"José Videla A.",
+		"Milwer7",
+		"Melanie Jalea"
 	],[
 		"Tools used",
 		"Developed with Godot Engine",
@@ -59,7 +61,14 @@ var credits = [
 	],[
 		"Special thanks",
 		"My parents",
-		"My friends"
+		"My friends",
+		"",
+		"Mario por botar el ramo RIP",
+		"Milwer q me ayudó mucho y lo quiero mucho",
+		"Melanie Jalea por ser mi amiga",
+		"Mi familia q lxs quiero mucho",
+		"Damian por su buena disposición xD",
+		"Elías por dejarme presentar online"
 	]
 ]
 

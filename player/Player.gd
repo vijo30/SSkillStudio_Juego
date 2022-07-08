@@ -110,6 +110,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_down") and (climb): velocity.y += move_speed
 
 		# actually move the player
+		if actualMushroom != null: velocity = Vector2.ZERO
 		velocity = move_and_slide(velocity, Vector2.UP)
 				
 		# animations	
@@ -211,6 +212,7 @@ func _on_eatTimer_timeout():
 	if actualMushroom == "3":
 		self.position.x = Manager.teleportPlace[Manager.actualLevel][0]
 		self.position.y = Manager.teleportPlace[Manager.actualLevel][1]
+	actualMushroom = null
 	get_node(mushroomSound).play()
 
 

@@ -25,34 +25,39 @@ position = Vector2( 0, -1 )
 [node name="Node" type="Node2D" parent="Level_1_tile"]
 
 [node name="5" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 910, 202 )
+position = Vector2( 909, 203 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
 [node name="1" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 353, 714 )
+position = Vector2( 354, 716 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
 [node name="6" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 742, 714 )
+position = Vector2( 741, 715 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
 [node name="3" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 1157, 520 )
+position = Vector2( 1158, 523 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
 [node name="8" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 499, 360 )
+position = Vector2( 500, 363 )
 scale = Vector2( 2.5, 2 )
 texture = ExtResource( 11 )
 
 [node name="9" type="Sprite" parent="Level_1_tile/Node"]
-position = Vector2( 1346, 873 )
+position = Vector2( 1345, 875 )
 scale = Vector2( 2.5, 2 )
 texture = ExtResource( 11 )
+
+[node name="2" type="Sprite" parent="Level_1_tile/Node"]
+position = Vector2( 1359, 171 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
 
 [node name="Callampin" parent="." instance=ExtResource( 8 )]
 use_parent_material = true
@@ -90,7 +95,6 @@ position = Vector2( 233, 1076 )
 
 [node name="Next_level" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1705, 133 )
-frame = 4
 
 [node name="PauseBox" parent="." instance=ExtResource( 4 )]
 visible = false
